@@ -1,11 +1,18 @@
-import { Cell } from "@datalayer/jupyter-react";
-import { Box } from "@primer/react";
+import {Handle, Position} from "reactflow";
+
+const handleStyle = {left: 10};
 
 const NodeCell: React.FC = () => {
   return (
-    <Box>
-      <Cell source={"print('Hello world!')"}/>
-    </Box>
+    <>
+      <Handle type="target" position={Position.Top} />
+      <div>
+        <label htmlFor="text">Text:</label>
+        <input id="text" name="text" />
+      </div>
+      <Handle type="source" position={Position.Bottom} id="a" />
+      <Handle type="source" position={Position.Bottom} id="b" style={handleStyle} />
+    </>
   );
 };
 
