@@ -1,12 +1,12 @@
-// App.tsx
-import { Notebook, Jupyter } from "@datalayer/jupyter-react";
+import {Jupyter} from "@datalayer/jupyter-react";
+import NodeCell from "./components/NodeCell/NodeCell";
 
 function App() {
   return (
     <Jupyter>
-      <Notebook path="ping.ipynb" />
+      <NodeCell />
     </Jupyter>
-  )
+  );
 }
 
 export default App;
