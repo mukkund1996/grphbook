@@ -3,6 +3,7 @@ import {Jupyter} from "@datalayer/jupyter-react";
 import {MiniMap, ReactFlow} from "reactflow";
 
 import NodeCell from "./components/NodeCell/NodeCell";
+import { store } from "./store/store";
 
 function App() {
   const nodeTypes = useMemo(() => ({nodeCell: NodeCell}), []);
@@ -11,7 +12,7 @@ function App() {
 
   return (
     <div style={{height: "100%"}}>
-      <Jupyter>{null}</Jupyter>
+      <Jupyter injectableStore={store}>{null}</Jupyter>
       <ReactFlow nodes={nodes} nodeTypes={nodeTypes}>
         <MiniMap />
       </ReactFlow>
