@@ -1,7 +1,9 @@
+import {configureStore} from "@reduxjs/toolkit";
 import reducers from "./jupyterui/AllReducers";
-import {createStore} from "redux";
 
-export const store = createStore(reducers, {});
+export const store = configureStore({
+  reducer: {...reducers},
+});
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;

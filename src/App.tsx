@@ -1,6 +1,6 @@
 import {useMemo} from "react";
 import {Jupyter} from "@datalayer/jupyter-react";
-import {ReactFlow} from "reactflow";
+import {MiniMap, ReactFlow} from "reactflow";
 
 import NodeCell from "./components/NodeCell/NodeCell";
 
@@ -11,10 +11,10 @@ function App() {
 
   return (
     <div style={{height: "100%"}}>
-      <Jupyter>
-        {null}
-      </Jupyter>
-      <ReactFlow nodes={nodes} nodeTypes={nodeTypes} />
+      <Jupyter>{null}</Jupyter>
+      <ReactFlow nodes={nodes} nodeTypes={nodeTypes}>
+        <MiniMap />
+      </ReactFlow>
     </div>
   );
 }
