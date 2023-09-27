@@ -3,20 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@datalayer/jupyter-react": "0.4.1",
     "@monaco-editor/react": "^4.5.1",
     "@primer/react": "^35.26.1",
     "@reduxjs/toolkit": "^1.9.5",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.38",
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-redux": "^8.1.1",
     "react-scripts": "5.0.1",
     "reactflow": "^11.7.4",
     "styled-components": "^6.0.3",
@@ -24,14 +19,14 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "run-p -c start:*",
-    "start:jupyter": "./dev/sh/start-jupyter-server.sh",
-    "start:react": "react-scripts start",
+    "start": "react-scripts start",
     "kill": "./dev/sh/kill.sh"
   },
   "devDependencies": {
-    "buffer": "6.0.3",
-    "npm-run-all": "4.1.5"
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "buffer": "6.0.3"
   },
   "eslintConfig": {
     "extends": [
