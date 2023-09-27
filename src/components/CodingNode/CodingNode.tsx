@@ -1,10 +1,10 @@
 import {Editor} from "@monaco-editor/react";
 import {Handle, Position} from "reactflow";
-import "./nodeCell.css";
+import "./CodingNode.css";
 
 const handleStyle = {left: 10};
 
-const NodeCell: React.FC = () => {
+const CodingNode: React.FC = () => {
   return (
     <div className="node-cell-type">
       <Handle type="target" position={Position.Top} />
@@ -15,4 +15,4 @@ const NodeCell: React.FC = () => {
   );
 };
 
-export default NodeCell;
+export default CodingNode;
