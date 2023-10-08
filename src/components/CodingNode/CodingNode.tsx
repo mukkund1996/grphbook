@@ -4,13 +4,19 @@ import "./CodingNode.css";
 import {Button} from "@primer/react";
 
 const CodingNode: React.FC = () => {
+  const options = {
+    selectOnLineNumbers: false,
+    minimap: {enabled: false},
+  };
   return (
     <div className="node-cell-type">
-      <Handle type="target" position={Position.Top} />
-      <Editor defaultLanguage="python" defaultValue="print('Hello World!')" />
-      <Button variant="outline">Code</Button>
-      <Button variant="outline">Markdown</Button>
-      <Handle type="source" position={Position.Bottom} id="a" />
+      <Handle type="target" id="a" position={Position.Right} />
+      <Editor width="90%" options={options} defaultLanguage="python" defaultValue="print('Hello World!')" />
+      <div className="control">
+        <Button variant="outline">Code</Button>
+        <Button variant="outline">Markdown</Button>
+      </div>
+      <Handle type="source" position={Position.Bottom} id="b" />
     </div>
   );
 };

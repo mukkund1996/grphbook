@@ -1,8 +1,9 @@
-import {Handle, Position} from "reactflow";
-import "./DescriptionNode.css";
-import {Button, Textarea} from "@primer/react";
+import {Connection, Handle, Position} from "reactflow";
 import MDEditor from "@uiw/react-md-editor";
+import {Button, Textarea} from "@primer/react";
 import {useState} from "react";
+
+import styles from "./DescriptionNode.module.css";
 
 const DescriptionNode: React.FC = () => {
   const [textValue, setTextValue] = useState<string>("");
@@ -17,16 +18,25 @@ const DescriptionNode: React.FC = () => {
   };
 
   return (
-    <div className="node-cell-type">
-      <Handle type="target" position={Position.Top} />
+    <div className={styles["node-cell-type"]}>
+      <Handle type="target" id="a" position={Position.Top} />
       {visibility ? <Textarea placeholder="Enter a description" onChange={handleChange} value={textValue} /> : null}
       {!visibility ? <MDEditor.Markdown source={textValue} style={{whiteSpace: "pre-wrap"}} /> : null}
-      <Button variant="outline" onClick={handleClick}>
-        {visibility ? "Convert" : "Edit"}
-      </Button>
-      <Button variant="outline">Code</Button>
-      <Button variant="outline">Markdown</Button>
-      <Handle type="source" position={Position.Bottom} id="a" />
+      <div className={styles["control"]}>
+        <Button variant="outline" onClick={handleClick}>
+          {visibility ? "Convert" : "Edit"}
+        </Button>
+        <Button variant="outline">Code</Button>
+        <Button variant="outline">Markdown</Button>
+      </div>
+      <Handle
+        type="source"
+        onConnect={(connection: Connection) => {
+          console.log("Connection id: ", connection.source);
+        }}
+        position={Position.Bottom}
+        id="b"
+      />
     </div>
   );
 };

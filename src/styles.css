@@ -1,0 +1,15 @@
+html,
+body,
+#root,
+.app {
+  height: 100%;
+}
+
+.app {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.background {
+  z-index: -100;
+}
