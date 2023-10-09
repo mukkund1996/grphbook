@@ -1,12 +1,18 @@
-import {Connection, Handle, Position} from "reactflow";
+import {Connection, Handle, Position, Node, NodeProps} from "reactflow";
 import MDEditor from "@uiw/react-md-editor";
 import {Button, Textarea} from "@primer/react";
 import {useState} from "react";
 
 import styles from "./DescriptionNode.module.css";
 
-const DescriptionNode: React.FC = () => {
-  const [textValue, setTextValue] = useState<string>("");
+type DescriptionNodeData = {
+  content: string;
+};
+
+export type DescriptionNodeType = Node<DescriptionNodeData>;
+
+const DescriptionNode = ({data}: NodeProps<DescriptionNodeData>) => {
+  const [textValue, setTextValue] = useState<string>(data.content);
   const [visibility, setVisibility] = useState<boolean>(true);
 
   const handleChange = (event: any) => {

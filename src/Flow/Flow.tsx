@@ -1,8 +1,8 @@
 import {useCallback, useMemo, useState} from "react";
 import {
+  Connection,
   Edge,
   MiniMap,
-  OnConnect,
   OnEdgesChange,
   OnNodesChange,
   ReactFlow,
@@ -10,6 +10,8 @@ import {
   applyEdgeChanges,
   applyNodeChanges,
 } from "reactflow";
+
+import "reactflow/dist/style.css";
 
 import CodingNode from "../components/CodingNode/CodingNode";
 import {INITIAL_NODES} from "../state/InitialState";
@@ -30,7 +32,7 @@ const Flow: React.FC = () => {
     changes => setEdges(eds => applyEdgeChanges(changes, eds)),
     [setEdges]
   );
-  const onConnect: OnConnect = useCallback(connection => setEdges(eds => addEdge(connection, eds)), [setEdges]);
+  const onConnect = useCallback((params: Edge | Connection) => setEdges(els => addEdge(params, els)), [setEdges]);
 
   return (
     <ReactFlow
@@ -40,7 +42,6 @@ const Flow: React.FC = () => {
       onEdgesChange={onEdgesChange}
       onConnect={onConnect}
       nodeTypes={nodeTypes}
-      fitView
     >
       <MiniMap />
       <CustomControl />

@@ -10,7 +10,7 @@ const CodingNode: React.FC = () => {
   };
   return (
     <div className="node-cell-type">
-      <Handle type="target" id="a" position={Position.Right} />
+      <Handle type="target" id="a" position={Position.Top} />
       <Editor width="90%" options={options} defaultLanguage="python" defaultValue="print('Hello World!')" />
       <div className="control">
         <Button variant="outline">Code</Button>
