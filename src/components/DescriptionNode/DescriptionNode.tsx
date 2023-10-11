@@ -4,14 +4,16 @@ import {Button, Textarea} from "@primer/react";
 import {useState} from "react";
 
 import styles from "./DescriptionNode.module.css";
+import {useControls} from "../../hooks/useControls";
 
-type DescriptionNodeData = {
+export type DescriptionNodeData = {
   content: string;
 };
 
 export type DescriptionNodeType = Node<DescriptionNodeData>;
 
 const DescriptionNode = ({data}: NodeProps<DescriptionNodeData>) => {
+  const {addCodingNode, addDescriptionNode} = useControls();
   const [textValue, setTextValue] = useState<string>(data.content);
   const [visibility, setVisibility] = useState<boolean>(true);
 
@@ -19,7 +21,7 @@ const DescriptionNode = ({data}: NodeProps<DescriptionNodeData>) => {
     setTextValue(event.target.value);
   };
 
-  const handleClick = () => {
+  const handleConvertMd = () => {
     setVisibility(!visibility);
   };
 
@@ -29,11 +31,15 @@ const DescriptionNode = ({data}: NodeProps<DescriptionNodeData>) => {
       {visibility ? <Textarea placeholder="Enter a description" onChange={handleChange} value={textValue} /> : null}
       {!visibility ? <MDEditor.Markdown source={textValue} style={{whiteSpace: "pre-wrap"}} /> : null}
       <div className={styles["control"]}>
-        <Button variant="outline" onClick={handleClick}>
+        <Button variant="outline" onClick={handleConvertMd}>
           {visibility ? "Convert" : "Edit"}
         </Button>
-        <Button variant="outline">Code</Button>
-        <Button variant="outline">Markdown</Button>
+        <Button variant="outline" onClick={addCodingNode}>
+          Code
+        </Button>
+        <Button variant="outline" onClick={addDescriptionNode}>
+          Markdown
+        </Button>
       </div>
       <Handle
         type="source"
