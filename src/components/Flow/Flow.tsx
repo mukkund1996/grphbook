@@ -13,16 +13,17 @@ import {
 
 import "reactflow/dist/style.css";
 
-import CodingNode from "../components/CodingNode/CodingNode";
-import {INITIAL_NODES} from "../state/InitialState";
-import DescriptionNode from "../components/DescriptionNode/DescriptionNode";
-import CustomControl from "../components/Controls/Controls";
+import CodingNode from "../CodingNode/CodingNode";
+import DescriptionNode from "../DescriptionNode/DescriptionNode";
+import CustomControl from "../Controls/Controls";
+import { INITIAL_EDGES, INITIAL_NODES } from "../../state/InitialState";
+import { GrphBookNode } from "../../notebook/NoteBook";
 
 const Flow: React.FC = () => {
   const nodeTypes = useMemo(() => ({codingCell: CodingNode, descriptionCell: DescriptionNode}), []);
 
-  const [nodes, setNodes] = useState(INITIAL_NODES);
-  const [edges, setEdges] = useState<Edge[]>([]);
+  const [nodes, setNodes] = useState<Array<GrphBookNode>>(INITIAL_NODES);
+  const [edges, setEdges] = useState<Array<Edge>>(INITIAL_EDGES);
 
   const onNodesChange: OnNodesChange = useCallback(
     changes => setNodes(nds => applyNodeChanges(changes, nds)),

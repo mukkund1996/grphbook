@@ -5,7 +5,8 @@ import {Button} from "@primer/react";
 import {useControls} from "../../hooks/useControls";
 
 export type CodingNodeData = {
-  codePlaceHolder: string;
+  code: string;
+  order: number;
 };
 
 export type CodingNodeType = Node<CodingNodeData>;
@@ -19,7 +20,7 @@ const CodingNode = ({data}: NodeProps<CodingNodeData>) => {
   return (
     <div className="node-cell-type">
       <Handle type="target" id="a" position={Position.Top} />
-      <Editor width="90%" options={options} defaultLanguage="python" defaultValue={data.codePlaceHolder} />
+      <Editor width="90%" options={options} defaultLanguage="python" defaultValue={data.code} />
       <div className="control">
         <Button variant="outline" onClick={addCodingNode}>
           Code

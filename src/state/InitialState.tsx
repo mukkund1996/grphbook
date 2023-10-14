@@ -1,13 +1,37 @@
-import {Edge, Node} from "reactflow";
+import {NoteBook} from "../notebook/NoteBook";
+import {importNotebook} from "../notebook/importNotebook";
 
-export const INITIAL_NODES: Node[] = [
-  {id: "node-1", type: "codingCell", position: {x: 500, y: 300}, data: {codePlaceHolder: 'print("hello world")'}},
-  {
-    id: "node-2",
-    type: "descriptionCell",
-    position: {x: 500, y: 500},
-    data: {content: "This can be Markdown'd!"},
+const initialNotebook: NoteBook = {
+  cells: [
+    {
+      cell_type: "code",
+      execution_count: null,
+      metadata: {},
+      outputs: [],
+      source: ['print("hello world!")', 'print("Another Line!")'],
+    },
+    {
+      cell_type: "code",
+      execution_count: null,
+      metadata: {},
+      outputs: [],
+      source: [],
+    },
+    {
+      cell_type: "markdown",
+      metadata: {},
+      source: ["## Hello there"],
+    },
+  ],
+  metadata: {
+    language_info: {
+      name: "python",
+    },
   },
-];
+  nbformat: 4,
+  nbformat_minor: 2,
+};
 
-export const INITIAL_EDGES: Edge[] = [{id: "e1-2", source: "node-1", target: "node-2"}];
+const {nodes: INITIAL_NODES, edges: INITIAL_EDGES} = importNotebook(initialNotebook);
+
+export {INITIAL_NODES, INITIAL_EDGES};

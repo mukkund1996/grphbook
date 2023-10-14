@@ -8,6 +8,7 @@ import {useControls} from "../../hooks/useControls";
 
 export type DescriptionNodeData = {
   content: string;
+  order: number;
 };
 
 export type DescriptionNodeType = Node<DescriptionNodeData>;

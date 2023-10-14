@@ -1,7 +1,6 @@
 import {Edge, useReactFlow} from "reactflow";
-import { CodingNodeType} from "../components/CodingNode/CodingNode";
-import { DescriptionNodeType} from "../components/DescriptionNode/DescriptionNode";
-import uuidv4 from "uuidv4";
+import {CELL_PREFIX, generateEdgeId, generateNodeId} from "../utils/generateId";
+import { GrphBookNode } from "../notebook/NoteBook";
 
 export interface ControlHooks {
   addCodingNode: () => void;
@@ -10,31 +9,28 @@ export interface ControlHooks {
 
 export const useControls = (): ControlHooks => {
   const reactFlowInstance = useReactFlow();
-  const extractEdge = (
-    type: string,
-    data: any,
-  ): [CodingNodeType | DescriptionNodeType, Edge] => {
+  const extractEdge = (type: CELL_PREFIX, data: any): [GrphBookNode, Edge] => {
     const selectedNode = reactFlowInstance.getNodes().filter(node => node.selected)[0];
-    const newNode: CodingNodeType | DescriptionNodeType = {
-      id: `${type}_${uuidv4()}`,
+    const newNode: GrphBookNode = {
+      id: generateNodeId(type),
       position: {x: selectedNode.position.x, y: selectedNode.position.y + 200},
       data,
       type,
     };
     const newEdge: Edge = {
-      id: `${selectedNode.id}_${newNode.id}`,
+      id: generateEdgeId(selectedNode.id, newNode.id),
       source: selectedNode.id,
       target: newNode.id,
     };
     return [newNode, newEdge];
   };
   const addCodingNode = () => {
-    const [newNode, newEdge] = extractEdge("codingCell", {codePlaceHolder: "print('another cell')"});
+    const [newNode, newEdge] = extractEdge(CELL_PREFIX.CODING_CELL_PREFIX, {code: "print('another cell')"});
     reactFlowInstance.addNodes(newNode);
     reactFlowInstance.addEdges(newEdge);
   };
   const addDescriptionNode = () => {
-    const [newNode, newEdge] = extractEdge("descriptionCell", {content: "another cell"});
+    const [newNode, newEdge] = extractEdge(CELL_PREFIX.DESCRIPTION_CELL_PREFIX, {content: "another cell"});
     reactFlowInstance.addNodes(newNode);
     reactFlowInstance.addEdges(newEdge);
   };
