@@ -1,7 +1,7 @@
 import {Edge} from "reactflow";
-import {generateEdgesFromNodes, importNotebook} from "../notebook/importNotebook";
-import {CELL_PREFIX} from "./generateId";
-import { GrphBookNode, NoteBook } from "../notebook/NoteBook";
+import {generateEdgesFromNodes, importNotebook} from "./importNotebook";
+import {CELL_PREFIX} from "../utils/generateId";
+import { GrphBookNode, NoteBook } from "./NoteBook";
 
 describe("Tests importNotebook functions", () => {
   it("should generate edges when a list of nodes are specified", () => {
@@ -105,7 +105,7 @@ describe("Tests importNotebook functions", () => {
         type: CELL_PREFIX.CODING_CELL_PREFIX,
         position: {
           x: 500,
-          y: 100,
+          y: 200,
         },
         data: {
           code: 'print("hello world!")\nprint("Another Line!")',
@@ -117,7 +117,7 @@ describe("Tests importNotebook functions", () => {
         type: CELL_PREFIX.CODING_CELL_PREFIX,
         position: {
           x: 500,
-          y: 200,
+          y: 400,
         },
         data: {
           code: "",
@@ -129,7 +129,7 @@ describe("Tests importNotebook functions", () => {
         type: CELL_PREFIX.DESCRIPTION_CELL_PREFIX,
         position: {
           x: 500,
-          y: 300,
+          y: 600,
         },
         data: {
           content: "## Hello there",
