@@ -3,6 +3,7 @@ import {
   Connection,
   Edge,
   MiniMap,
+  NodeTypes,
   OnEdgesChange,
   OnNodesChange,
   ReactFlow,
@@ -19,8 +20,9 @@ import CustomControl from "../Controls/Controls";
 import { INITIAL_EDGES, INITIAL_NODES } from "../../state/InitialState";
 import { GrphBookNode } from "../../notebook/NoteBook";
 
+const nodeTypes: NodeTypes = {codingCell: CodingNode, descriptionCell: DescriptionNode};
+
 const Flow: React.FC = () => {
-  const nodeTypes = useMemo(() => ({codingCell: CodingNode, descriptionCell: DescriptionNode}), []);
 
   const [nodes, setNodes] = useState<Array<GrphBookNode>>(INITIAL_NODES);
   const [edges, setEdges] = useState<Array<Edge>>(INITIAL_EDGES);
