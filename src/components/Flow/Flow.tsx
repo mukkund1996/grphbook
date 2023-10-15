@@ -1,8 +1,9 @@
-import {useCallback, useMemo, useState} from "react";
+import {useCallback, useState} from "react";
 import {
   Connection,
   Edge,
   MiniMap,
+  Node,
   NodeTypes,
   OnEdgesChange,
   OnNodesChange,
@@ -18,13 +19,12 @@ import CodingNode from "../CodingNode/CodingNode";
 import DescriptionNode from "../DescriptionNode/DescriptionNode";
 import CustomControl from "../Controls/Controls";
 import { INITIAL_EDGES, INITIAL_NODES } from "../../state/InitialState";
-import { GrphBookNode } from "../../notebook/NoteBook";
 
 const nodeTypes: NodeTypes = {codingCell: CodingNode, descriptionCell: DescriptionNode};
 
 const Flow: React.FC = () => {
 
-  const [nodes, setNodes] = useState<Array<GrphBookNode>>(INITIAL_NODES);
+  const [nodes, setNodes] = useState<Array<Node>>(INITIAL_NODES);
   const [edges, setEdges] = useState<Array<Edge>>(INITIAL_EDGES);
 
   const onNodesChange: OnNodesChange = useCallback(
