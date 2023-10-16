@@ -145,3 +145,7 @@ describe("Tests importNotebook functions", () => {
     expect(edges).toEqual(expectedEdges);
   });
 });
+
+// edges = node0-node1, node1-node2, node1-node3, node2-node4
+// sourceTargetMap = {node0: node1, node1: node2, node1: node3, node2: node4}
+// adjascencyMap = {node0: [node1], node1: [node0, node2, node3], node2: [node1, node4], node3: [node1]}
