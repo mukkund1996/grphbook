@@ -1,6 +1,6 @@
 import {CELL_PREFIX} from "../utils/generateId";
 import {GrphBookNode, NoteBook} from "./NoteBook";
-import {exportNotebook} from "./exportNotebook";
+import {exportNotebook, identifyWorkflows} from "./exportNotebook";
 
 describe("tests the export", () => {
   it("should return the correct notebook given a list of nodes", () => {
@@ -74,5 +74,22 @@ describe("tests the export", () => {
     };
     const exportedNotebook = exportNotebook(nodes);
     expect(exportedNotebook).toEqual(expectedNotebook);
+  });
+  
+  it('should return unique paths given edges', () => {
+    const inputEdges = [
+      {
+        id: "edge_1",
+        source: "sample_1",
+        target: "sample_2",
+      },
+      {
+        id: "edge_2",
+        source: "sample_2",
+        target: "sample_3",
+      },
+    ];
+    
+    identifyWorkflows(inputEdges);
   });
 });

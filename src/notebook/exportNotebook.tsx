@@ -1,5 +1,6 @@
 import {Edge} from "reactflow";
 import {Cell, GrphBookNode, NoteBook} from "./NoteBook";
+var jsnx = require("jsnetworkx");
 
 export const exportNotebook = (nodes: Array<GrphBookNode>): NoteBook => {
   const cells: Array<Cell> = nodes.map(node => {
@@ -37,32 +38,12 @@ export const exportNotebook = (nodes: Array<GrphBookNode>): NoteBook => {
   };
 };
 
-// const identifyWorkflows = (edges: Array<Edge>): Array<Array<string>> => {
-//   const nodeRoute: Array<string> = [];
-//   const updatedEdges: Array<Edge> = [];
-//   const sourceTargetMap: any = {};
-//   edges.forEach(edge => {
-//     sourceTargetMap[edge.source] = edge.target;
-//   })
+export const identifyWorkflows = (edges: Array<Edge>) => {
+  var graph = new jsnx.Graph();
+  const edgeTuples = edges.map(edge => [edge.source, edge.target]);
+  graph.addEdgesFrom(edgeTuples);
 
-//   Object.keys(sourceTargetMap).forEach(source => {
-//     const target
-//     nodeRoute.push(source);
-//     nodeRoute.push(sourceTargetMap[source]);
-
-//   })
-
-  
-  // const sourceNodes = edges.map(edge => edge.source);
-  // const targetNodes = edges.map(edge => edge.target);
-
-  // const countMap: any = {};
-  // [...sourceNodes, ...targetNodes].forEach(nodeId => {
-  //   countMap[nodeId] = countMap[nodeId] || 0 + 1;
-  // });
-
-  // // Counting the nodes that have divergent values
-  // Object.keys(countMap).filter(node => countMap[node] > 1);
-// };
+  console.log(graph.nodes());
+};
 
 const extractSourceData = (content: string): Array<string> => (content === "" ? [] : content.split("\n"));
