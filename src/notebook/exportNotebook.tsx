@@ -1,6 +1,8 @@
 import {Edge} from "reactflow";
 import {Cell, GrphBookNode, NoteBook} from "./NoteBook";
-var jsnx = require("jsnetworkx");
+
+type AdjascencyInfo = {in: Array<string>; out: Array<string>};
+type NodeRoutes = Array<Array<GrphBookNode>>;
 
 export const exportNotebook = (nodes: Array<GrphBookNode>): NoteBook => {
   const cells: Array<Cell> = nodes.map(node => {
@@ -38,12 +40,44 @@ export const exportNotebook = (nodes: Array<GrphBookNode>): NoteBook => {
   };
 };
 
-export const identifyWorkflows = (edges: Array<Edge>) => {
-  var graph = new jsnx.Graph();
-  const edgeTuples = edges.map(edge => [edge.source, edge.target]);
-  graph.addEdgesFrom(edgeTuples);
+export const identifyWorkflows = (edges: Array<Edge>, nodes: Array<GrphBookNode>): NodeRoutes => {
+  const nodeMap: {[nodeId: string]: GrphBookNode} = {};
+  nodes.forEach(node => {
+    nodeMap[node.id] = node;
+  });
+  let nodeInfo: {[node: string]: AdjascencyInfo} = {};
+  Object.keys(nodeMap).forEach(node => {
+    nodeInfo[node] = {in: [], out: []};
+  });
+  for (const edge of edges) {
+    // adding the in and out degree to the target node
+    nodeInfo[edge.target].in.push(edge.source);
+    nodeInfo[edge.source].out.push(edge.target);
+  }
+  const finalNodes = Object.keys(nodeInfo).filter(node => nodeInfo[node].out.length === 0);
 
-  console.log(graph.nodes());
+  const uniqueRoutes: Array<Array<string>> = [];
+  for (const finalNode of finalNodes) {
+    const uniqueRoute = [finalNode];
+    let sourceNode = nodeInfo[finalNode].in[0];
+    while (sourceNode) {
+      uniqueRoute.push(sourceNode);
+      sourceNode = nodeInfo[sourceNode].in[0];
+    }
+    uniqueRoutes.push(uniqueRoute);
+  }
+
+  return extractNodes(uniqueRoutes, nodeMap);
 };
 
 const extractSourceData = (content: string): Array<string> => (content === "" ? [] : content.split("\n"));
+
+const extractNodes = (routes: Array<Array<string>>, nodeMap: {[nodeId: string]: GrphBookNode}): NodeRoutes => {
+  const routeNodes: NodeRoutes = [];
+  const convertToNodes = (nodeId: string): GrphBookNode => nodeMap[nodeId];
+  routes.forEach(route => {
+    routeNodes.push(route.map(convertToNodes).reverse());
+  });
+
+  return routeNodes;
+};
