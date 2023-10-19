@@ -1,8 +1,10 @@
 import {Editor} from "@monaco-editor/react";
 import {Handle, Node, NodeProps, Position} from "reactflow";
-import "./CodingNode.css";
 import {Button} from "@primer/react";
 import {useControls} from "../../hooks/useControls";
+
+import commonStyles from "../Styles/common.module.css";
+import "./CodingNode.css";
 
 export type CodingNodeData = {
   code: string;
@@ -18,7 +20,7 @@ const CodingNode = ({data}: NodeProps<CodingNodeData>) => {
     minimap: {enabled: false},
   };
   return (
-    <div className="node-cell-type">
+    <div className={`node-cell-type ${commonStyles["border"]}`}>
       <Handle type="target" id="a" position={Position.Top} />
       <Editor width="90%" options={options} defaultLanguage="python" defaultValue={data.code} />
       <div className="control">

@@ -1,0 +1,11 @@
+.route-label {
+  background-color: #fff;
+}
+
+.route-label-selected .route-label:hover {
+  background-color: #f4f4f4;
+}
+
+.download-label:hover {
+  background-color: #e9f8ff;
+}

@@ -4,6 +4,7 @@ import {Button, Textarea} from "@primer/react";
 import {useState} from "react";
 
 import styles from "./DescriptionNode.module.css";
+import commonStyles from "../Styles/common.module.css";
 import {useControls} from "../../hooks/useControls";
 
 export type DescriptionNodeData = {
@@ -27,7 +28,7 @@ const DescriptionNode = ({data}: NodeProps<DescriptionNodeData>) => {
   };
 
   return (
-    <div className={styles["node-cell-type"]}>
+    <div className={`${styles["node-cell-type"]} ${commonStyles["border"]}`}>
       <Handle type="target" id="a" position={Position.Top} />
       {visibility ? <Textarea placeholder="Enter a description" onChange={handleChange} value={textValue} /> : null}
       {!visibility ? <MDEditor.Markdown source={textValue} style={{whiteSpace: "pre-wrap"}} /> : null}

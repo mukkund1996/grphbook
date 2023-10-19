@@ -2,7 +2,7 @@ import {Edge} from "reactflow";
 import {Cell, GrphBookNode, NoteBook} from "./NoteBook";
 
 type AdjascencyInfo = {in: Array<string>; out: Array<string>};
-type NodeRoutes = Array<Array<GrphBookNode>>;
+export type NodeRoutes = Array<Array<GrphBookNode>>;
 
 export const exportNotebook = (nodes: Array<GrphBookNode>): NoteBook => {
   const cells: Array<Cell> = nodes.map(node => {

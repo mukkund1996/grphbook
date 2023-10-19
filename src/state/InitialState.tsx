@@ -16,12 +16,7 @@ const initialNotebook: NoteBook = {
       metadata: {},
       outputs: [],
       source: [],
-    },
-    {
-      cell_type: "markdown",
-      metadata: {},
-      source: ["## Hello there"],
-    },
+    }
   ],
   metadata: {
     language_info: {
