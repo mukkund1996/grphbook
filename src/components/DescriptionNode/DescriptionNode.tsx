@@ -1,11 +1,10 @@
-import {Connection, Handle, Position, Node, NodeProps} from "reactflow";
+import { Connection, Handle, Position, Node, NodeProps } from "reactflow";
 import MDEditor from "@uiw/react-md-editor";
-import {Button, Textarea} from "@primer/react";
-import {useState} from "react";
+import { Button, Textarea } from "@primer/react";
 
-import styles from "./DescriptionNode.module.css";
 import commonStyles from "../Styles/common.module.css";
-import {NodeControls} from "../NodeControls/NodeControls";
+import { NodeControls } from "../NodeControls/NodeControls";
+import { useDescriptionNode } from "./DescriptionNode.hooks";
 
 export type DescriptionNodeData = {
   content: string;
@@ -15,17 +14,9 @@ export type DescriptionNodeData = {
 
 export type DescriptionNodeType = Node<DescriptionNodeData>;
 
-const DescriptionNode = ({data}: NodeProps<DescriptionNodeData>) => {
-  const [textValue, setTextValue] = useState<string>(data.content);
-  const [visibility, setVisibility] = useState<boolean>(true);
-
-  const handleChange = (event: any) => {
-    setTextValue(event.target.value);
-  };
-
-  const handleConvertMd = () => {
-    setVisibility(!visibility);
-  };
+const DescriptionNode = ({ data }: NodeProps<DescriptionNodeData>) => {
+  const { visibility, textValue, handleChange, handleConvertMd } =
+    useDescriptionNode(data);
 
   const MdButton = () => (
     <Button variant="outline" onClick={handleConvertMd}>
@@ -36,8 +27,19 @@ const DescriptionNode = ({data}: NodeProps<DescriptionNodeData>) => {
   return (
     <div className={`${commonStyles["node"]} ${commonStyles["border"]}`}>
       <Handle type="target" id="a" position={Position.Top} />
-      {visibility ? <Textarea placeholder="Enter a description" onChange={handleChange} value={textValue} /> : null}
-      {!visibility ? <MDEditor.Markdown source={textValue} style={{whiteSpace: "pre-wrap"}} /> : null}
+      {visibility ? (
+        <Textarea
+          placeholder="Enter a description"
+          onChange={handleChange}
+          value={textValue}
+        />
+      ) : null}
+      {!visibility ? (
+        <MDEditor.Markdown
+          source={textValue}
+          style={{ whiteSpace: "pre-wrap" }}
+        />
+      ) : null}
       <NodeControls auxillaryButton={MdButton} />
       <Handle
         type="source"
