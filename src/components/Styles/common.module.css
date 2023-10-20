@@ -3,3 +3,13 @@
   border-radius: 5px;
   background: #fff;
 }
+
+.button {
+  background: #f4f4f4;
+  border-radius: 5px;
+  margin: 0 1%;
+}
+
+.button:hover {
+  background-color: aliceblue;
+}

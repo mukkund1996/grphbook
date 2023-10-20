@@ -7,10 +7,3 @@
   width: 500px;
   padding: 10px 0px;
 }
-
-.control {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
