@@ -1,9 +1,8 @@
 import styles from "./DownloadDialog.module.css";
-import commonStyles from "../Styles/common.module.css";
 import {NodeRoutes, exportNotebook} from "../../notebook/exportNotebook";
 import {ActionList, Dialog} from "@primer/react";
 import {DownloadIcon} from "@primer/octicons-react";
-import {useCallback, useRef, useState} from "react";
+import {useCallback, useState} from "react";
 import {GrphBookNode} from "../../notebook/NoteBook";
 import uuidv4 from "uuidv4";
 import {downloadTxtFile, generateLabel} from "../utils/download";

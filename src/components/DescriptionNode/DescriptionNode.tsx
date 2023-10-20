@@ -5,7 +5,7 @@ import {useState} from "react";
 
 import styles from "./DescriptionNode.module.css";
 import commonStyles from "../Styles/common.module.css";
-import {useControls} from "../../hooks/useControls";
+import {NodeControls} from "../NodeControls/NodeControls";
 
 export type DescriptionNodeData = {
   content: string;
@@ -15,7 +15,6 @@ export type DescriptionNodeData = {
 export type DescriptionNodeType = Node<DescriptionNodeData>;
 
 const DescriptionNode = ({data}: NodeProps<DescriptionNodeData>) => {
-  const {addCodingNode, addDescriptionNode} = useControls();
   const [textValue, setTextValue] = useState<string>(data.content);
   const [visibility, setVisibility] = useState<boolean>(true);
 
@@ -27,22 +26,18 @@ const DescriptionNode = ({data}: NodeProps<DescriptionNodeData>) => {
     setVisibility(!visibility);
   };
 
+  const MdButton = () => (
+    <Button variant="outline" onClick={handleConvertMd}>
+      {visibility ? "Convert" : "Edit"}
+    </Button>
+  );
+
   return (
     <div className={`${styles["node-cell-type"]} ${commonStyles["border"]}`}>
       <Handle type="target" id="a" position={Position.Top} />
       {visibility ? <Textarea placeholder="Enter a description" onChange={handleChange} value={textValue} /> : null}
       {!visibility ? <MDEditor.Markdown source={textValue} style={{whiteSpace: "pre-wrap"}} /> : null}
-      <div className={styles["control"]}>
-        <Button variant="outline" onClick={handleConvertMd}>
-          {visibility ? "Convert" : "Edit"}
-        </Button>
-        <Button variant="outline" onClick={addCodingNode}>
-          Code
-        </Button>
-        <Button variant="outline" onClick={addDescriptionNode}>
-          Markdown
-        </Button>
-      </div>
+      <NodeControls auxillaryButton={MdButton} />
       <Handle
         type="source"
         onConnect={(connection: Connection) => {
