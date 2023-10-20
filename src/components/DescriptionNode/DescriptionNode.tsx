@@ -2,9 +2,12 @@ import { Connection, Handle, Position, Node, NodeProps } from "reactflow";
 import MDEditor from "@uiw/react-md-editor";
 import { Button, Textarea } from "@primer/react";
 
-import commonStyles from "../Styles/common.module.css";
 import { NodeControls } from "../NodeControls/NodeControls";
 import { useDescriptionNode } from "./DescriptionNode.hooks";
+
+import commonStyles from "../Styles/common.module.css";
+import { textStyles } from "./DescriptionNode.styles";
+import styles from "./DescriptionNode.module.css";
 
 export type DescriptionNodeData = {
   content: string;
@@ -29,6 +32,8 @@ const DescriptionNode = ({ data }: NodeProps<DescriptionNodeData>) => {
       <Handle type="target" id="a" position={Position.Top} />
       {visibility ? (
         <Textarea
+          sx={textStyles}
+          resize="none"
           placeholder="Enter a description"
           onChange={handleChange}
           value={textValue}
@@ -36,6 +41,7 @@ const DescriptionNode = ({ data }: NodeProps<DescriptionNodeData>) => {
       ) : null}
       {!visibility ? (
         <MDEditor.Markdown
+          className={styles["md-box"]}
           source={textValue}
           style={{ whiteSpace: "pre-wrap" }}
         />
