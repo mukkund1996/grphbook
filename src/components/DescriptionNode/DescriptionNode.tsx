@@ -10,6 +10,7 @@ import {NodeControls} from "../NodeControls/NodeControls";
 export type DescriptionNodeData = {
   content: string;
   order: number;
+  editorId?: string;
 };
 
 export type DescriptionNodeType = Node<DescriptionNodeData>;
@@ -33,7 +34,7 @@ const DescriptionNode = ({data}: NodeProps<DescriptionNodeData>) => {
   );
 
   return (
-    <div className={`${styles["node-cell-type"]} ${commonStyles["border"]}`}>
+    <div className={`${commonStyles["node"]} ${commonStyles["border"]}`}>
       <Handle type="target" id="a" position={Position.Top} />
       {visibility ? <Textarea placeholder="Enter a description" onChange={handleChange} value={textValue} /> : null}
       {!visibility ? <MDEditor.Markdown source={textValue} style={{whiteSpace: "pre-wrap"}} /> : null}
