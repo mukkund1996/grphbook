@@ -6,4 +6,5 @@ export enum CELL_PREFIX {
 }
 
 export const generateNodeId = (type: CELL_PREFIX) => `${type}_${uuidv4()}`;
-export const generateEdgeId = (from: string, to: string): string => `${from}_${to}`;
+export const generateEdgeId = (from: string, to: string): string =>
+  `${from}_${to}`;

@@ -1,9 +1,9 @@
-import {Editor} from "@monaco-editor/react";
-import {Handle, Node, NodeProps, Position} from "reactflow";
+import { Editor } from "@monaco-editor/react";
+import { Handle, Node, NodeProps, Position } from "reactflow";
 
 import commonStyles from "../Styles/common.module.css";
-import {NodeControls} from "../NodeControls/NodeControls";
-import {useCodingNode} from "./CodingNode.hooks";
+import { NodeControls } from "../NodeControls/NodeControls";
+import { useCodingNode } from "./CodingNode.hooks";
 
 export type CodingNodeData = {
   code: string;
@@ -15,11 +15,12 @@ export type CodingNodeType = Node<CodingNodeData>;
 
 const editorOptions = {
   selectOnLineNumbers: false,
-  minimap: {enabled: false},
+  minimap: { enabled: false },
 };
 
-const CodingNode = ({data}: NodeProps<CodingNodeData>) => {
-  const {handleEditorChange, handleEditorDidMount} = useCodingNode(data);
+const CodingNode = ({ data }: NodeProps<CodingNodeData>) => {
+  const { handleEditorChange, handleEditorDidMount } = useCodingNode(data);
+
   return (
     <div className={`${commonStyles["node"]} ${commonStyles["border"]}`}>
       <Handle type="target" id="a" position={Position.Top} />
