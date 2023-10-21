@@ -1,14 +1,25 @@
-import {ControlButton, Controls} from "reactflow";
-import {controlDiv, controlButtons} from "./Controls.styles";
-import {DownloadIcon, UploadIcon} from "@primer/octicons-react";
-import DownloadDialog from "./DownloadDialog";
-import {useDownloadRoutes} from "./DownloadDialog.hooks";
+import { ControlButton, Controls } from "reactflow";
+import { controlDiv, controlButtons } from "./Controls.styles";
+import { DownloadIcon, UploadIcon } from "@primer/octicons-react";
+import DownloadDialog from "./DownloadDialog/DownloadDialog";
+import { useDownloadRoutes } from "./DownloadDialog/DownloadDialog.hooks";
 
 const CustomControl: React.FC = () => {
   const handleUpload = () => {};
-  const {anchorRef, nodeRoutes, handleDownloadOpen, showDownload, setShowDownload} = useDownloadRoutes();
+  const {
+    anchorRef,
+    nodeRoutes,
+    handleDownloadOpen,
+    showDownload,
+    setShowDownload,
+  } = useDownloadRoutes();
   return (
-    <Controls style={controlDiv} showZoom={false} showFitView={false} showInteractive={false}>
+    <Controls
+      style={controlDiv}
+      showZoom={false}
+      showFitView={false}
+      showInteractive={false}
+    >
       <ControlButton style={controlButtons} onClick={handleUpload}>
         <UploadIcon size={24} />
       </ControlButton>
@@ -21,7 +32,12 @@ const CustomControl: React.FC = () => {
         <div ref={anchorRef}></div>
         <DownloadIcon />
       </ControlButton>
-      <DownloadDialog open={showDownload} setOpen={setShowDownload} routes={nodeRoutes} anchorRef={anchorRef} />
+      <DownloadDialog
+        open={showDownload}
+        setOpen={setShowDownload}
+        routes={nodeRoutes}
+        anchorRef={anchorRef}
+      />
     </Controls>
   );
 };

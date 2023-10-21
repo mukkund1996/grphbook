@@ -1,12 +1,13 @@
 import styles from "./DownloadDialog.module.css";
-import { NodeRoutes, exportNotebook } from "../../notebook/exportNotebook";
+import { NodeRoutes, exportNotebook } from "../../../notebook/exportNotebook";
 import { ActionList, Dialog } from "@primer/react";
 import { DownloadIcon } from "@primer/octicons-react";
 import { useCallback, useState } from "react";
-import { GrphBookNode } from "../../notebook/NoteBook";
+import { GrphBookNode } from "../../../notebook/NoteBook";
 import uuidv4 from "uuidv4";
-import { downloadTxtFile, generateLabel } from "../utils/download";
+import { downloadTxtFile, generateLabel } from "../../utils/download";
 import { useReactFlow } from "reactflow";
+import { dialogStyles } from "./DownloadDialog.styles";
 
 type DownloadOptionsProps = {
   open: boolean;
@@ -52,6 +53,8 @@ const DownloadDialog: React.FC<DownloadOptionsProps> = (
         | React.MouseEvent<HTMLLIElement>
         | React.KeyboardEvent<HTMLLIElement>
     ): void => {
+      // Clearing the selection for other routes first
+      routes.forEach((route) => setHighlightAttr(route, false));
       setSelectedRoute(selectedRoute);
       setHighlightAttr(selectedRoute, true);
     };
@@ -69,16 +72,7 @@ const DownloadDialog: React.FC<DownloadOptionsProps> = (
 
   return (
     <Dialog
-      sx={{
-        position: "fixed",
-        left: 0,
-        margin: "34vh 18%",
-        border: "3px solid #f4f4f4",
-        borderRadius: "5px",
-        background: "#fff",
-        padding: "0px 15px",
-        width: "20em",
-      }}
+      sx={dialogStyles}
       returnFocusRef={anchorRef}
       isOpen={open}
       onDismiss={handleClose}
