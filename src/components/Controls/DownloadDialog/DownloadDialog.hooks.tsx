@@ -1,9 +1,13 @@
-import { useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useReactFlow } from "reactflow";
 import {
   NodeRoutes,
+  exportNotebook,
   identifyWorkflows,
 } from "../../../notebook/exportNotebook";
+import { DownloadOptionsProps } from "./DownloadDialog";
+import { GrphBookNode } from "../../../notebook/NoteBook";
+import { downloadTxtFile, generateLabel } from "../../utils/download";
 
 export const useDownloadRoutes = () => {
   const flowInstance = useReactFlow();
@@ -27,5 +31,85 @@ export const useDownloadRoutes = () => {
     handleDownloadOpen,
     showDownload,
     setShowDownload,
+  };
+};
+
+export const useDownloadHandles = (props: DownloadOptionsProps) => {
+  const { setOpen, routes } = props;
+
+  const flowInstance = useReactFlow();
+
+  const setNodes = useCallback(
+    (updatedRoute: Array<GrphBookNode>) => {
+      flowInstance.setNodes((nodes) => [...nodes, ...updatedRoute]);
+    },
+    [flowInstance]
+  );
+
+  const getHighlightedNodes = useCallback(
+    (route: Array<GrphBookNode>, highlighted: boolean): Array<GrphBookNode> => {
+      const borderStyle = highlighted
+        ? { border: "5px solid #ff9999" }
+        : undefined;
+      const updatedRoute = [...route];
+      updatedRoute.forEach((node) => {
+        node.style = borderStyle;
+      });
+      return updatedRoute;
+    },
+    []
+  );
+
+  const handleClose = () => {
+    setOpen(false);
+    if (selectedRoute.length) {
+      setNodes(getHighlightedNodes(selectedRoute, false));
+    }
+  };
+
+  const [selectedRoute, setSelectedRoute] = useState<Array<GrphBookNode>>([]);
+  const [availableRoutes, setAvailableRoutes] = useState<NodeRoutes>(routes);
+
+  useEffect(() => {
+    setAvailableRoutes(routes);
+  }, [routes, getHighlightedNodes]);
+
+  const handleItemSelect =
+    (selectedRoute: Array<GrphBookNode>) =>
+    (
+      _event:
+        | React.MouseEvent<HTMLLIElement>
+        | React.KeyboardEvent<HTMLLIElement>
+    ): void => {
+      // Clearing the selection for other routes first
+      const updatedRoutes = [...availableRoutes];
+      let updatedNodes: Array<GrphBookNode> = [];
+      updatedRoutes.forEach((route) => {
+        updatedNodes = [...updatedNodes, ...getHighlightedNodes(route, false)];
+      });
+      updatedNodes = [
+        ...updatedNodes,
+        ...getHighlightedNodes(selectedRoute, true),
+      ];
+      setNodes(updatedNodes);
+      setSelectedRoute(selectedRoute);
+    };
+
+  const handleDownload = (
+    _event: React.MouseEvent<HTMLLIElement> | React.KeyboardEvent<HTMLLIElement>
+  ): void => {
+    if (selectedRoute.length !== 0) {
+      const notebook = exportNotebook(selectedRoute);
+      const stringified = JSON.stringify(notebook);
+      downloadTxtFile(stringified, `${generateLabel(selectedRoute)}.ipynb`);
+      setNodes(getHighlightedNodes(selectedRoute, false));
+    }
+  };
+
+  return {
+    availableRoutes,
+    handleClose,
+    handleItemSelect,
+    handleDownload,
   };
 };
