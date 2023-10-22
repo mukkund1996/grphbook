@@ -2,7 +2,7 @@ import styles from "./DownloadDialog.module.css";
 import { NodeRoutes, exportNotebook } from "../../../notebook/exportNotebook";
 import { ActionList, Dialog } from "@primer/react";
 import { DownloadIcon } from "@primer/octicons-react";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { GrphBookNode } from "../../../notebook/NoteBook";
 import uuidv4 from "uuidv4";
 import { downloadTxtFile, generateLabel } from "../../utils/download";
@@ -23,28 +23,40 @@ const DownloadDialog: React.FC<DownloadOptionsProps> = (
 
   const flowInstance = useReactFlow();
 
-  const setHighlightAttr = useCallback(
-    (nodes: Array<GrphBookNode>, highlighted: boolean) => {
-      const borderStyle = highlighted
-        ? { border: "5px solid #ff9999" }
-        : undefined;
-      const updatedRoute = [...nodes];
-      updatedRoute.forEach((node) => {
-        node.style = borderStyle;
-      });
+  const setNodes = useCallback(
+    (updatedRoute: Array<GrphBookNode>) => {
       flowInstance.setNodes((nodes) => [...nodes, ...updatedRoute]);
     },
     [flowInstance]
   );
 
+  const getHighlightedNodes = useCallback(
+    (route: Array<GrphBookNode>, highlighted: boolean): Array<GrphBookNode> => {
+      const borderStyle = highlighted
+        ? { border: "5px solid #ff9999" }
+        : undefined;
+      const updatedRoute = [...route];
+      updatedRoute.forEach((node) => {
+        node.style = borderStyle;
+      });
+      return updatedRoute;
+    },
+    []
+  );
+
   const handleClose = () => {
     setOpen(false);
     if (selectedRoute.length) {
-      setHighlightAttr(selectedRoute, false);
+      setNodes(getHighlightedNodes(selectedRoute, false));
     }
   };
 
   const [selectedRoute, setSelectedRoute] = useState<Array<GrphBookNode>>([]);
+  const [availableRoutes, setAvailableRoutes] = useState<NodeRoutes>(routes);
+
+  useEffect(() => {
+    setAvailableRoutes(routes);
+  }, [routes, getHighlightedNodes]);
 
   const handleItemSelect =
     (selectedRoute: Array<GrphBookNode>) =>
@@ -54,9 +66,17 @@ const DownloadDialog: React.FC<DownloadOptionsProps> = (
         | React.KeyboardEvent<HTMLLIElement>
     ): void => {
       // Clearing the selection for other routes first
-      routes.forEach((route) => setHighlightAttr(route, false));
+      const updatedRoutes = [...availableRoutes];
+      let updatedNodes: Array<GrphBookNode> = [];
+      updatedRoutes.forEach((route) => {
+        updatedNodes = [...updatedNodes, ...getHighlightedNodes(route, false)];
+      });
+      updatedNodes = [
+        ...updatedNodes,
+        ...getHighlightedNodes(selectedRoute, true),
+      ];
+      setNodes(updatedNodes);
       setSelectedRoute(selectedRoute);
-      setHighlightAttr(selectedRoute, true);
     };
 
   const handleDownload = (
@@ -66,7 +86,7 @@ const DownloadDialog: React.FC<DownloadOptionsProps> = (
       const notebook = exportNotebook(selectedRoute);
       const stringified = JSON.stringify(notebook);
       downloadTxtFile(stringified, `${generateLabel(selectedRoute)}.ipynb`);
-      setHighlightAttr(selectedRoute, false);
+      setNodes(getHighlightedNodes(selectedRoute, false));
     }
   };
 
@@ -80,7 +100,7 @@ const DownloadDialog: React.FC<DownloadOptionsProps> = (
     >
       <Dialog.Header id="header-id">Select possible routes</Dialog.Header>
       <ActionList selectionVariant="single">
-        {routes.map((route) => (
+        {availableRoutes.map((route) => (
           <ActionList.Item
             className={styles["route-label"]}
             onSelect={handleItemSelect(route)}
