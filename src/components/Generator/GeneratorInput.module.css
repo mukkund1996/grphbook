@@ -1,0 +1,7 @@
+.input {
+  width: 25vw;
+  height: 5vh;
+  z-index: 500;
+  margin-top: 3%;
+  border: 3px solid #f4f4f4;
+}
