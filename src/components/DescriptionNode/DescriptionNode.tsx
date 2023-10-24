@@ -5,9 +5,12 @@ import { Button, Textarea } from "@primer/react";
 import { NodeControls } from "../NodeControls/NodeControls";
 import { useDescriptionNode } from "./DescriptionNode.hooks";
 
+import { mdStyles, textStyles } from "./DescriptionNode.styles";
+
+import { buttonSx } from "../Styles/common.styles";
 import commonStyles from "../Styles/common.module.css";
-import { textStyles } from "./DescriptionNode.styles";
 import styles from "./DescriptionNode.module.css";
+import { PaintbrushIcon, PencilIcon } from "@primer/octicons-react";
 
 export type DescriptionNodeData = {
   content: string;
@@ -22,7 +25,13 @@ const DescriptionNode = ({ data }: NodeProps<DescriptionNodeData>) => {
     useDescriptionNode(data);
 
   const MdButton = () => (
-    <Button variant="outline" onClick={handleConvertMd}>
+    <Button
+      leadingIcon={visibility ? PaintbrushIcon : PencilIcon}
+      className={commonStyles["button"]}
+      sx={buttonSx}
+      variant="outline"
+      onClick={handleConvertMd}
+    >
       {visibility ? "Convert" : "Edit"}
     </Button>
   );
@@ -43,7 +52,7 @@ const DescriptionNode = ({ data }: NodeProps<DescriptionNodeData>) => {
         <MDEditor.Markdown
           className={styles["md-box"]}
           source={textValue}
-          style={{ whiteSpace: "pre-wrap" }}
+          style={mdStyles}
         />
       ) : null}
       <NodeControls auxillaryButton={MdButton} />

@@ -6,7 +6,7 @@ import { getCurrentNode } from "../../utils/reactFlow";
 export const useDescriptionNode = (data: DescriptionNodeData) => {
   const flowInstance = useReactFlow();
   const [textValue, setTextValue] = useState<string>(data.content);
-  const [visibility, setVisibility] = useState<boolean>(true);
+  const [visibility, setVisibility] = useState<boolean>(false);
 
   const setEditorMd = (value?: string) => {
     if (value) {

@@ -1,7 +1,7 @@
-import {Edge} from "reactflow";
-import {generateEdgesFromNodes, importNotebook} from "./importNotebook";
-import {CELL_PREFIX} from "../utils/generateId";
-import {GrphBookNode, NoteBook} from "./NoteBook";
+import { Edge } from "reactflow";
+import { generateEdgesFromNodes, importNotebook } from "./importNotebook";
+import { CELL_PREFIX } from "../utils/generateId";
+import { GrphBookNode, NoteBook } from "./NoteBook";
 
 describe("Tests importNotebook functions", () => {
   it("should generate edges when a list of nodes are specified", () => {
@@ -45,7 +45,7 @@ describe("Tests importNotebook functions", () => {
     ];
 
     const edges = generateEdgesFromNodes(nodes);
-    const generatedIds = edges.map(edge => edge.id);
+    const generatedIds = edges.map((edge) => edge.id);
     const expectedEdges = [
       {
         id: generatedIds[0],
@@ -98,14 +98,14 @@ describe("Tests importNotebook functions", () => {
       nbformat_minor: 2,
     };
 
-    const {nodes, edges} = importNotebook(testNotebook);
+    const { nodes, edges } = importNotebook(testNotebook);
     const expectedNodes: Array<GrphBookNode> = [
       {
         id: nodes[0].id,
         type: CELL_PREFIX.CODING_CELL_PREFIX,
         position: {
           x: 500,
-          y: 200,
+          y: 250,
         },
         data: {
           code: 'print("hello world!")\nprint("Another Line!")',
@@ -117,7 +117,7 @@ describe("Tests importNotebook functions", () => {
         type: CELL_PREFIX.CODING_CELL_PREFIX,
         position: {
           x: 500,
-          y: 400,
+          y: 500,
         },
         data: {
           code: "",
@@ -129,7 +129,7 @@ describe("Tests importNotebook functions", () => {
         type: CELL_PREFIX.DESCRIPTION_CELL_PREFIX,
         position: {
           x: 500,
-          y: 600,
+          y: 750,
         },
         data: {
           content: "## Hello there",
@@ -138,8 +138,16 @@ describe("Tests importNotebook functions", () => {
       },
     ];
     const expectedEdges: Array<Edge> = [
-      {id: `${nodes[0].id}_${nodes[1].id}`, source: nodes[0].id, target: nodes[1].id},
-      {id: `${nodes[1].id}_${nodes[2].id}`, source: nodes[1].id, target: nodes[2].id},
+      {
+        id: `${nodes[0].id}_${nodes[1].id}`,
+        source: nodes[0].id,
+        target: nodes[1].id,
+      },
+      {
+        id: `${nodes[1].id}_${nodes[2].id}`,
+        source: nodes[1].id,
+        target: nodes[2].id,
+      },
     ];
     expect(nodes).toEqual(expectedNodes);
     expect(edges).toEqual(expectedEdges);

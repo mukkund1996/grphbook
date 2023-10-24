@@ -1,9 +1,11 @@
 import { Editor } from "@monaco-editor/react";
 import { Handle, Node, NodeProps, Position } from "reactflow";
 
-import commonStyles from "../Styles/common.module.css";
 import { NodeControls } from "../NodeControls/NodeControls";
 import { useCodingNode } from "./CodingNode.hooks";
+
+import styles from "./CodingNode.module.css";
+import commonStyles from "../Styles/common.module.css";
 
 export type CodingNodeData = {
   code: string;
@@ -25,8 +27,9 @@ const CodingNode = ({ data }: NodeProps<CodingNodeData>) => {
     <div className={`${commonStyles["node"]} ${commonStyles["border"]}`}>
       <Handle type="target" id="a" position={Position.Top} />
       <Editor
+        className={styles["code-editor"]}
         width="90%"
-        height="100px"
+        height="150px"
         options={editorOptions}
         defaultLanguage="python"
         defaultValue={data.code}

@@ -1,8 +1,14 @@
-import {Edge} from "reactflow";
-import {CELL_PREFIX, generateEdgeId, generateNodeId} from "../utils/generateId";
+import { Edge } from "reactflow";
+import {
+  CELL_PREFIX,
+  generateEdgeId,
+  generateNodeId,
+} from "../utils/generateId";
 import { Cell, CellType, GrphBookNode, NoteBook } from "./NoteBook";
 
-export const importNotebook = (notebook: NoteBook): {nodes: Array<GrphBookNode>; edges: Array<Edge>} => {
+export const importNotebook = (
+  notebook: NoteBook
+): { nodes: Array<GrphBookNode>; edges: Array<Edge> } => {
   // Joining the nodes together to iterate and return
   const nodes = _extractNodesFromCells(notebook.cells);
   const edges = generateEdgesFromNodes(nodes);
@@ -12,7 +18,9 @@ export const importNotebook = (notebook: NoteBook): {nodes: Array<GrphBookNode>;
   };
 };
 
-export const generateEdgesFromNodes = (nodes: Array<GrphBookNode>): Array<Edge> => {
+export const generateEdgesFromNodes = (
+  nodes: Array<GrphBookNode>
+): Array<Edge> => {
   let edges: Array<Edge> = [];
   for (const [i, node] of nodes.entries()) {
     if (i + 1 < nodes.length) {
@@ -42,7 +50,7 @@ const _extractNodesFromCells = (cells: Array<Cell>): Array<GrphBookNode> => {
     const commonCellContent = {
       position: {
         x: 500,
-        y: 200 * (i + 1),
+        y: 250 * (i + 1),
       },
     };
     if (cell.cell_type === CellType.CODING) {
