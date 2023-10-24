@@ -4,4 +4,6 @@
   z-index: 500;
   margin-top: 3%;
   border: 3px solid #f4f4f4;
+  position: absolute;
+  bottom: 40vh;
 }

@@ -6,6 +6,6 @@ export const buttonSx: CSSProperties = {
 
 export const borderStyles: CSSProperties = {
   border: "3px solid #f4f4f4",
-  borderRadius: "5px",
+  borderRadius: "10px",
   background: "#fff",
 };

@@ -19,7 +19,6 @@ import CodingNode from "../CodingNode/CodingNode";
 import DescriptionNode from "../DescriptionNode/DescriptionNode";
 import CustomControl from "../Controls/Controls";
 import { INITIAL_EDGES, INITIAL_NODES } from "../../state/InitialState";
-import { GeneratorInput } from "../Generator/GeneratorInput";
 
 const nodeTypes: NodeTypes = {
   codingCell: CodingNode,
@@ -54,7 +53,6 @@ const Flow: React.FC = () => {
     >
       <MiniMap />
       <CustomControl />
-      <GeneratorInput />
     </ReactFlow>
   );
 };
