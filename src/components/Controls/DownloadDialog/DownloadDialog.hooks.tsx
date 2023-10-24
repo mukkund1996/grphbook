@@ -95,9 +95,7 @@ export const useDownloadHandles = (props: DownloadOptionsProps) => {
       setSelectedRoute(selectedRoute);
     };
 
-  const handleDownload = (
-    _event: React.MouseEvent<HTMLLIElement> | React.KeyboardEvent<HTMLLIElement>
-  ): void => {
+  const handleDownload = (): void => {
     if (selectedRoute.length !== 0) {
       const notebook = exportNotebook(selectedRoute);
       const stringified = JSON.stringify(notebook);

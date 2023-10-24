@@ -1,11 +1,14 @@
-import styles from "./DownloadDialog.module.css";
 import { NodeRoutes } from "../../../notebook/exportNotebook";
-import { ActionList, Dialog } from "@primer/react";
+import { ActionList, Button, Dialog } from "@primer/react";
 import { DownloadIcon } from "@primer/octicons-react";
 import uuidv4 from "uuidv4";
 import { generateLabel } from "../../utils/download";
 import { dialogStyles } from "./DownloadDialog.styles";
 import { useDownloadHandles } from "./DownloadDialog.hooks";
+
+import styles from "./DownloadDialog.module.css";
+import { buttonSx } from "../../Styles/common.styles";
+import commonStyles from "../../Styles/common.module.css";
 
 export type DownloadOptionsProps = {
   open: boolean;
@@ -41,15 +44,16 @@ const DownloadDialog: React.FC<DownloadOptionsProps> = (
           </ActionList.Item>
         ))}
         <ActionList.Divider />
-        <ActionList.Item
-          className={styles["download-label"]}
-          onSelect={handleDownload}
-        >
-          Download file
-          <ActionList.TrailingVisual>
-            <DownloadIcon />
-          </ActionList.TrailingVisual>
-        </ActionList.Item>
+        <div className={styles["download-control"]}>
+          <Button
+            sx={buttonSx}
+            onClick={handleDownload}
+            className={commonStyles["button"]}
+            trailingIcon={DownloadIcon}
+          >
+            Download
+          </Button>
+        </div>
       </ActionList>
     </Dialog>
   );
