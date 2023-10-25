@@ -10,7 +10,9 @@ import { GrphBookNode } from "../../../notebook/NoteBook";
 import { downloadTxtFile } from "../../utils/download";
 import { generateLabel, generateRouteKey } from "./DownloadDialog.utils";
 
-export type KeyRouteMapType = { [key: string]: Array<GrphBookNode> };
+type KeyRouteMapType = { [key: string]: Array<GrphBookNode> };
+type KeyRouteTuple = [key: string, route: Array<GrphBookNode>];
+type KeySelectionMap = { [key: string]: boolean };
 
 export const useDownloadRoutes = () => {
   const flowInstance = useReactFlow();
@@ -39,7 +41,10 @@ export const useDownloadRoutes = () => {
 
 export const useDownloadHandles = (props: DownloadOptionsProps) => {
   const { setOpen, routes } = props;
-
+  const [selectedKeyRouteMap, setSelectedKeyRouteMap] =
+    useState<KeyRouteTuple>();
+  const [keyRouteMap, setKeyRouteMap] = useState<KeyRouteMapType>({});
+  const [keySelectionMap, setKeySelectionMap] = useState<KeySelectionMap>({});
   const flowInstance = useReactFlow();
 
   const setNodes = useCallback(
@@ -49,6 +54,15 @@ export const useDownloadHandles = (props: DownloadOptionsProps) => {
     [flowInstance]
   );
 
+  const clearKeySelection = () => {
+    setKeySelectionMap((selectionMap: KeySelectionMap): KeySelectionMap => {
+      const updatedMap = { ...selectionMap };
+      Object.keys(updatedMap).forEach((key) => {
+        updatedMap[key] = false;
+      });
+      return updatedMap;
+    });
+  };
   const getHighlightedNodes = useCallback(
     (route: Array<GrphBookNode>, highlighted: boolean): Array<GrphBookNode> => {
       const borderStyle = highlighted
@@ -65,31 +79,33 @@ export const useDownloadHandles = (props: DownloadOptionsProps) => {
 
   const handleClose = () => {
     setOpen(false);
-    if (selectedRoute.length) {
-      setNodes(getHighlightedNodes(selectedRoute, false));
+    if (selectedKeyRouteMap?.[1].length) {
+      setNodes(getHighlightedNodes(selectedKeyRouteMap[1], false));
+      clearKeySelection();
     }
   };
 
-  const [selectedRoute, setSelectedRoute] = useState<Array<GrphBookNode>>([]);
-  const [keyRouteMap, setKeyRouteMap] = useState<KeyRouteMapType>({});
-
   useEffect(() => {
     let updatedRoute: KeyRouteMapType = {};
+    let updatedKeySelection: KeySelectionMap = {};
     routes.forEach((route) => {
       const key = generateRouteKey();
       updatedRoute[key] = route;
+      updatedKeySelection[key] = false;
     });
     setKeyRouteMap(updatedRoute);
+    setKeySelectionMap(updatedKeySelection);
   }, [routes, getHighlightedNodes]);
 
   const handleItemSelect =
-    (selectedRoute: Array<GrphBookNode>) =>
+    (selectedKeyRouteTuple: KeyRouteTuple) =>
     (
       _event:
         | React.MouseEvent<HTMLLIElement>
         | React.KeyboardEvent<HTMLLIElement>
     ): void => {
       // Clearing the selection for other routes first
+      clearKeySelection();
       const updatedRoutes = [...Object.values(keyRouteMap)];
       let updatedNodes: Array<GrphBookNode> = [];
       updatedRoutes.forEach((route) => {
@@ -97,18 +113,27 @@ export const useDownloadHandles = (props: DownloadOptionsProps) => {
       });
       updatedNodes = [
         ...updatedNodes,
-        ...getHighlightedNodes(selectedRoute, true),
+        ...getHighlightedNodes(selectedKeyRouteTuple?.[1], true),
       ];
       setNodes(updatedNodes);
-      setSelectedRoute(selectedRoute);
+      setSelectedKeyRouteMap(selectedKeyRouteTuple);
+      setKeySelectionMap((selectionMap): KeySelectionMap => {
+        const updatedMap = { ...selectionMap };
+        updatedMap[selectedKeyRouteTuple?.[0]] = true;
+        return updatedMap;
+      });
     };
 
   const handleDownload = (): void => {
-    if (selectedRoute.length !== 0) {
-      const notebook = exportNotebook(selectedRoute);
+    if (selectedKeyRouteMap?.[1] && selectedKeyRouteMap?.[1].length !== 0) {
+      const notebook = exportNotebook(selectedKeyRouteMap?.[1]);
       const stringified = JSON.stringify(notebook);
-      downloadTxtFile(stringified, `${generateLabel(selectedRoute)}.ipynb`);
-      setNodes(getHighlightedNodes(selectedRoute, false));
+      downloadTxtFile(
+        stringified,
+        `${generateLabel(selectedKeyRouteMap?.[1])}.ipynb`
+      );
+      setNodes(getHighlightedNodes(selectedKeyRouteMap?.[1], false));
+      clearKeySelection();
     }
   };
 
@@ -117,5 +142,6 @@ export const useDownloadHandles = (props: DownloadOptionsProps) => {
     handleClose,
     handleItemSelect,
     handleDownload,
+    keySelectionMap,
   };
 };

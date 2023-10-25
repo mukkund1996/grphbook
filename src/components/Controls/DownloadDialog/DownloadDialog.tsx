@@ -19,8 +19,13 @@ const DownloadDialog: React.FC<DownloadOptionsProps> = (
   props: DownloadOptionsProps
 ) => {
   const { open, anchorRef } = props;
-  const { keyRouteMap, handleClose, handleItemSelect, handleDownload } =
-    useDownloadHandles(props);
+  const {
+    keyRouteMap,
+    keySelectionMap,
+    handleClose,
+    handleItemSelect,
+    handleDownload,
+  } = useDownloadHandles(props);
 
   return (
     <Dialog
@@ -36,9 +41,9 @@ const DownloadDialog: React.FC<DownloadOptionsProps> = (
           const route = keyRouteMap[key];
           return (
             <ActionList.Item
-              selected={true}
+              selected={keySelectionMap[key]}
               className={styles["route-label"]}
-              onSelect={handleItemSelect(keyRouteMap[key])}
+              onSelect={handleItemSelect([key, keyRouteMap[key]])}
               key={key}
             >
               {`${route.length}-node route`}
