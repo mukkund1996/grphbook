@@ -1,8 +1,6 @@
 import { NodeRoutes } from "../../../notebook/exportNotebook";
 import { ActionList, Button, Dialog } from "@primer/react";
 import { DownloadIcon } from "@primer/octicons-react";
-import uuidv4 from "uuidv4";
-import { generateLabel } from "../../utils/download";
 import { dialogStyles } from "./DownloadDialog.styles";
 import { useDownloadHandles } from "./DownloadDialog.hooks";
 
@@ -21,7 +19,7 @@ const DownloadDialog: React.FC<DownloadOptionsProps> = (
   props: DownloadOptionsProps
 ) => {
   const { open, anchorRef } = props;
-  const { availableRoutes, handleClose, handleItemSelect, handleDownload } =
+  const { keyRouteMap, handleClose, handleItemSelect, handleDownload } =
     useDownloadHandles(props);
 
   return (
@@ -34,15 +32,19 @@ const DownloadDialog: React.FC<DownloadOptionsProps> = (
     >
       <Dialog.Header id="header-id">Select possible routes</Dialog.Header>
       <ActionList selectionVariant="single">
-        {availableRoutes.map((route) => (
-          <ActionList.Item
-            className={styles["route-label"]}
-            onSelect={handleItemSelect(route)}
-            key={`route_${uuidv4()}`}
-          >
-            {generateLabel(route)}
-          </ActionList.Item>
-        ))}
+        {Object.keys(keyRouteMap).map((key) => {
+          const route = keyRouteMap[key];
+          return (
+            <ActionList.Item
+              selected={true}
+              className={styles["route-label"]}
+              onSelect={handleItemSelect(keyRouteMap[key])}
+              key={key}
+            >
+              {`${route.length}-node route`}
+            </ActionList.Item>
+          );
+        })}
         <ActionList.Divider />
         <div className={styles["download-control"]}>
           <Button

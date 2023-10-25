@@ -7,7 +7,10 @@ import {
 } from "../../../notebook/exportNotebook";
 import { DownloadOptionsProps } from "./DownloadDialog";
 import { GrphBookNode } from "../../../notebook/NoteBook";
-import { downloadTxtFile, generateLabel } from "../../utils/download";
+import { downloadTxtFile } from "../../utils/download";
+import { generateLabel, generateRouteKey } from "./DownloadDialog.utils";
+
+export type KeyRouteMapType = { [key: string]: Array<GrphBookNode> };
 
 export const useDownloadRoutes = () => {
   const flowInstance = useReactFlow();
@@ -68,10 +71,15 @@ export const useDownloadHandles = (props: DownloadOptionsProps) => {
   };
 
   const [selectedRoute, setSelectedRoute] = useState<Array<GrphBookNode>>([]);
-  const [availableRoutes, setAvailableRoutes] = useState<NodeRoutes>(routes);
+  const [keyRouteMap, setKeyRouteMap] = useState<KeyRouteMapType>({});
 
   useEffect(() => {
-    setAvailableRoutes(routes);
+    let updatedRoute: KeyRouteMapType = {};
+    routes.forEach((route) => {
+      const key = generateRouteKey();
+      updatedRoute[key] = route;
+    });
+    setKeyRouteMap(updatedRoute);
   }, [routes, getHighlightedNodes]);
 
   const handleItemSelect =
@@ -82,7 +90,7 @@ export const useDownloadHandles = (props: DownloadOptionsProps) => {
         | React.KeyboardEvent<HTMLLIElement>
     ): void => {
       // Clearing the selection for other routes first
-      const updatedRoutes = [...availableRoutes];
+      const updatedRoutes = [...Object.values(keyRouteMap)];
       let updatedNodes: Array<GrphBookNode> = [];
       updatedRoutes.forEach((route) => {
         updatedNodes = [...updatedNodes, ...getHighlightedNodes(route, false)];
@@ -105,7 +113,7 @@ export const useDownloadHandles = (props: DownloadOptionsProps) => {
   };
 
   return {
-    availableRoutes,
+    keyRouteMap,
     handleClose,
     handleItemSelect,
     handleDownload,
