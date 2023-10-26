@@ -3,7 +3,7 @@ import { controlDiv, controlButtons } from "./Controls.styles";
 import { DownloadIcon, UploadIcon } from "@primer/octicons-react";
 import DownloadDialog from "./DownloadDialog/DownloadDialog";
 import { useDownloadRoutes } from "./DownloadDialog/DownloadDialog.hooks";
-import { GeneratorInput } from "../Generator/GeneratorInput";
+import { GeneratorInput } from "../GeneratorInput/GeneratorInput";
 
 const CustomControl: React.FC = () => {
   const handleUpload = () => {};
@@ -39,7 +39,6 @@ const CustomControl: React.FC = () => {
         routes={nodeRoutes}
         anchorRef={anchorRef}
       />
-      <GeneratorInput />
     </Controls>
   );
 };

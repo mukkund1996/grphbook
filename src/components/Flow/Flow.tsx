@@ -19,10 +19,12 @@ import CodingNode from "../CodingNode/CodingNode";
 import DescriptionNode from "../DescriptionNode/DescriptionNode";
 import CustomControl from "../Controls/Controls";
 import { INITIAL_EDGES, INITIAL_NODES } from "../../state/InitialState";
+import GenerateNode from "../GenerateNode/GenerateNode";
 
 const nodeTypes: NodeTypes = {
   codingCell: CodingNode,
   descriptionCell: DescriptionNode,
+  generatorCell: GenerateNode,
 };
 
 const Flow: React.FC = () => {

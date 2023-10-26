@@ -5,23 +5,28 @@ import {
   generateNodeId,
 } from "../utils/generateId";
 import { GrphBookNode } from "../notebook/NoteBook";
+import { GenerateNodeType } from "../components/GenerateNode/GenerateNode";
 
 export interface ControlHooks {
   addCodingNode: () => void;
   addDescriptionNode: () => void;
+  addGeneratorNode: () => void;
 }
 
 export const useControls = (): ControlHooks => {
   const reactFlowInstance = useReactFlow();
-  const extractEdge = (type: CELL_PREFIX, data: any): [GrphBookNode, Edge] => {
+  const extractEdge = (
+    type: CELL_PREFIX,
+    data: any
+  ): [GrphBookNode | GenerateNodeType, Edge] => {
     const selectedNode = reactFlowInstance
       .getNodes()
       .filter((node) => node.selected)[0];
-    const newNode: GrphBookNode = {
+    const newNode: GrphBookNode | GenerateNodeType = {
       id: generateNodeId(type),
       position: {
         x: selectedNode.position.x,
-        y: selectedNode.position.y + 200,
+        y: selectedNode.position.y + 400,
       },
       data,
       type,
@@ -49,5 +54,13 @@ export const useControls = (): ControlHooks => {
     reactFlowInstance.addEdges(newEdge);
   };
 
-  return { addCodingNode, addDescriptionNode };
+  const addGeneratorNode = () => {
+    const [newNode, newEdge] = extractEdge(CELL_PREFIX.GENERATOR_CELL_PREFIX, {
+      content: "",
+    });
+    reactFlowInstance.addNodes(newNode);
+    reactFlowInstance.addEdges(newEdge);
+  };
+
+  return { addCodingNode, addDescriptionNode, addGeneratorNode };
 };
