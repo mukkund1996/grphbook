@@ -1,5 +1,7 @@
 import { useCallback, useState } from "react";
 import {
+  Background,
+  BackgroundVariant,
   Connection,
   Edge,
   MiniMap,
@@ -55,6 +57,12 @@ const Flow: React.FC = () => {
     >
       <MiniMap />
       <CustomControl />
+      <Background
+        id="1"
+        gap={10}
+        color="#f1f1f1"
+        variant={BackgroundVariant.Lines}
+      />
     </ReactFlow>
   );
 };
