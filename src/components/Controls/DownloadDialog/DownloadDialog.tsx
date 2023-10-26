@@ -5,7 +5,7 @@ import { dialogStyles } from "./DownloadDialog.styles";
 import { useDownloadHandles } from "./DownloadDialog.hooks";
 
 import styles from "./DownloadDialog.module.css";
-import { buttonSx } from "../../Styles/common.styles";
+import { baseButtonStyles } from "../../Styles/common.styles";
 import commonStyles from "../../Styles/common.module.css";
 
 export type DownloadOptionsProps = {
@@ -53,7 +53,7 @@ const DownloadDialog: React.FC<DownloadOptionsProps> = (
         <ActionList.Divider />
         <div className={styles["download-control"]}>
           <Button
-            sx={buttonSx}
+            sx={baseButtonStyles}
             onClick={handleDownload}
             className={commonStyles["button"]}
             trailingIcon={DownloadIcon}

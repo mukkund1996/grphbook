@@ -1,6 +1,6 @@
 import { CSSProperties } from "react";
 
-export const buttonSx: CSSProperties = {
+export const baseButtonStyles: CSSProperties = {
   border: "none",
 };
 

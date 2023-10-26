@@ -1,0 +1,20 @@
+.switches {
+  justify-content: space-between;
+}
+
+.toggle-area {
+  border: 3px #f4f4f4 solid;
+  background-color: #f4f4f4;
+  padding: 0px 5px;
+  border-radius: 5px;
+}
+
+.toggle button {
+  background-color: #fff;
+  border: none;
+}
+
+.text {
+  font-size: small;
+  font-weight: 400;
+}

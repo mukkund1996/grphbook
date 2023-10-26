@@ -7,7 +7,7 @@ import { useDescriptionNode } from "./DescriptionNode.hooks";
 
 import { mdStyles, textStyles } from "./DescriptionNode.styles";
 
-import { buttonSx } from "../Styles/common.styles";
+import { baseButtonStyles } from "../Styles/common.styles";
 import commonStyles from "../Styles/common.module.css";
 import styles from "./DescriptionNode.module.css";
 import { PaintbrushIcon, PencilIcon } from "@primer/octicons-react";
@@ -28,7 +28,7 @@ const DescriptionNode = ({ data }: NodeProps<DescriptionNodeData>) => {
     <Button
       leadingIcon={visibility ? PaintbrushIcon : PencilIcon}
       className={commonStyles["button"]}
-      sx={buttonSx}
+      sx={baseButtonStyles}
       variant="outline"
       onClick={handleConvertMd}
     >
