@@ -1,7 +1,6 @@
-import { Handle, Node, NodeProps, Position, useReactFlow } from "reactflow";
+import { Handle, Node, NodeProps, Position } from "reactflow";
 
 import { GeneratorInput } from "../GeneratorInput/GeneratorInput";
-import { MouseEventHandler, useState } from "react";
 import { Button, Text, ToggleSwitch } from "@primer/react";
 import { baseButtonStyles } from "../Styles/common.styles";
 import { XIcon } from "@primer/octicons-react";
@@ -9,6 +8,7 @@ import { XIcon } from "@primer/octicons-react";
 import commonStyles from "../Styles/common.module.css";
 import controlStyles from "../NodeControls/NodeControls.module.css";
 import styles from "./GenerateNode.module.css";
+import { useGenerateControls } from "./GenerateNode.hooks";
 
 export type GenerateNodeData = {
   content: string;
@@ -17,24 +17,14 @@ export type GenerateNodeData = {
 export type GenerateNodeType = Node<GenerateNodeData>;
 
 export const GenerateNode = ({ data }: NodeProps<GenerateNodeData>) => {
-  const flowInstance = useReactFlow();
-  const [includeMd, setIncludeMd] = useState(true);
-  const [input, setInput] = useState(data.content);
-
-  const handleGenerate: MouseEventHandler = (_event) => {
-    console.log(`${input.split(" ").length} tokens sent to GPT.`);
-  };
-
-  const handleToggle: MouseEventHandler = (_event) => {
-    setIncludeMd(!includeMd);
-  };
-
-  const handleDelete: MouseEventHandler = (_event) => {
-    flowInstance.setNodes((nodes) => {
-      const updatedNodes = [...nodes.filter((node) => !node.selected)];
-      return updatedNodes;
-    });
-  };
+  const {
+    input,
+    setInput,
+    includeMd,
+    handleToggle,
+    handleGenerate,
+    handleDelete,
+  } = useGenerateControls(data);
 
   return (
     <div className={`${commonStyles["node"]} ${commonStyles["border"]}`}>

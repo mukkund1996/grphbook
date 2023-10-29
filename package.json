@@ -48,5 +48,13 @@
   },
   "browser": {
     "crypto": false
+  },
+  "prettier": {
+    "semi": true,
+    "trailingComma": "all",
+    "singleQuote": false,
+    "printWidth": 80,
+    "editorFormatOnSave": true,
+    "arrowParens": "avoid"
   }
 }

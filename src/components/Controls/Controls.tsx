@@ -1,9 +1,8 @@
-import { ControlButton, Controls } from "reactflow";
+import { ControlButton, Controls, useReactFlow } from "reactflow";
 import { controlDiv, controlButtons } from "./Controls.styles";
 import { DownloadIcon, UploadIcon } from "@primer/octicons-react";
 import DownloadDialog from "./DownloadDialog/DownloadDialog";
 import { useDownloadRoutes } from "./DownloadDialog/DownloadDialog.hooks";
-import { GeneratorInput } from "../GeneratorInput/GeneratorInput";
 
 const CustomControl: React.FC = () => {
   const handleUpload = () => {};
@@ -13,6 +12,7 @@ const CustomControl: React.FC = () => {
     handleDownloadOpen,
     showDownload,
     setShowDownload,
+    disableDownload,
   } = useDownloadRoutes();
   return (
     <Controls
@@ -29,6 +29,7 @@ const CustomControl: React.FC = () => {
         aria-expanded={showDownload}
         onClick={handleDownloadOpen}
         style={controlButtons}
+        disabled={disableDownload}
       >
         <div ref={anchorRef}></div>
         <DownloadIcon />
