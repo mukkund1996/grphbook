@@ -1,11 +1,10 @@
 import { NodeRoutes } from "../../../notebook/exportNotebook";
 import { ActionList, Button, Dialog } from "@primer/react";
 import { DownloadIcon } from "@primer/octicons-react";
-import { dialogStyles } from "./DownloadDialog.styles";
 import { useDownloadHandles } from "./DownloadDialog.hooks";
 
 import styles from "./DownloadDialog.module.css";
-import { baseButtonStyles } from "../../Styles/common.styles";
+import { baseButtonStyles, dialogStyles } from "../../Styles/common.styles";
 import commonStyles from "../../Styles/common.module.css";
 
 export type DownloadOptionsProps = {
@@ -15,9 +14,7 @@ export type DownloadOptionsProps = {
   anchorRef: React.MutableRefObject<null>;
 };
 
-const DownloadDialog: React.FC<DownloadOptionsProps> = (
-  props: DownloadOptionsProps
-) => {
+const DownloadDialog = (props: DownloadOptionsProps) => {
   const { open, anchorRef } = props;
   const {
     keyRouteMap,
@@ -37,7 +34,7 @@ const DownloadDialog: React.FC<DownloadOptionsProps> = (
     >
       <Dialog.Header id="header-id">Select possible routes</Dialog.Header>
       <ActionList selectionVariant="single">
-        {Object.keys(keyRouteMap).map((key) => {
+        {Object.keys(keyRouteMap).map(key => {
           const route = keyRouteMap[key];
           return (
             <ActionList.Item
@@ -51,7 +48,7 @@ const DownloadDialog: React.FC<DownloadOptionsProps> = (
           );
         })}
         <ActionList.Divider />
-        <div className={styles["download-control"]}>
+        <div>
           <Button
             sx={baseButtonStyles}
             onClick={handleDownload}

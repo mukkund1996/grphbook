@@ -5,9 +5,9 @@ import { Button, Textarea } from "@primer/react";
 import { NodeControls } from "../NodeControls/NodeControls";
 import { useDescriptionNode } from "./DescriptionNode.hooks";
 
-import { mdStyles, textStyles } from "./DescriptionNode.styles";
+import { mdStyles } from "./DescriptionNode.styles";
 
-import { baseButtonStyles } from "../Styles/common.styles";
+import { baseButtonStyles, textStyles } from "../Styles/common.styles";
 import commonStyles from "../Styles/common.module.css";
 import styles from "./DescriptionNode.module.css";
 import { PaintbrushIcon, PencilIcon } from "@primer/octicons-react";
