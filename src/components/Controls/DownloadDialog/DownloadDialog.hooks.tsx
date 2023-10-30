@@ -22,7 +22,8 @@ export const useDownloadRoutes = () => {
   const [showDownload, setShowDownload] = useState<boolean>(false);
   const disableDownload = useMemo(
     () => containsGenerateNodes(flowInstance),
-    [flowInstance],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [flowInstance.getNodes()],
   );
   const handleDownloadOpen = () => {
     if (!showDownload) {
