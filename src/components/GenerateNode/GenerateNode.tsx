@@ -21,6 +21,7 @@ export const GenerateNode = ({ data }: NodeProps<GenerateNodeData>) => {
     input,
     setInput,
     includeMd,
+    loading,
     handleToggle,
     handleGenerate,
     handleDelete,
@@ -30,6 +31,7 @@ export const GenerateNode = ({ data }: NodeProps<GenerateNodeData>) => {
     <div className={`${commonStyles["node"]} ${commonStyles["border"]}`}>
       <Handle type="target" id="a" position={Position.Top} />
       <GeneratorInput
+        loading={loading}
         value={input}
         handleGenerate={handleGenerate}
         setValue={setInput}

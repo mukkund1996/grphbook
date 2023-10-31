@@ -10,11 +10,12 @@ import { borderStyles } from "../Styles/common.styles";
 type GeneratorInputProps = {
   value: string;
   setValue: (value: string) => void;
+  loading: boolean;
   handleGenerate: MouseEventHandler<HTMLButtonElement>;
 };
 
 export const GeneratorInput = (props: GeneratorInputProps) => {
-  const inputHandler: ChangeEventHandler<HTMLInputElement> = (event) => {
+  const inputHandler: ChangeEventHandler<HTMLInputElement> = event => {
     props.setValue(event.target.value);
   };
 
@@ -28,6 +29,7 @@ export const GeneratorInput = (props: GeneratorInputProps) => {
       placeholder="What do you wanna create?"
       value={props.value}
       onChange={inputHandler}
+      loading={props.loading}
       trailingAction={
         <TextInput.Action
           onClick={props.handleGenerate}

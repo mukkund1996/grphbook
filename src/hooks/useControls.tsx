@@ -17,16 +17,16 @@ export const useControls = (): ControlHooks => {
   const reactFlowInstance = useReactFlow();
   const extractEdge = (
     type: CELL_PREFIX,
-    data: any
+    data: any,
   ): [GrphBookNode | GenerateNodeType, Edge] => {
     const selectedNode = reactFlowInstance
       .getNodes()
-      .filter((node) => node.selected)[0];
+      .filter(node => node.selected)[0];
     const newNode: GrphBookNode | GenerateNodeType = {
       id: generateNodeId(type),
       position: {
         x: selectedNode.position.x,
-        y: selectedNode.position.y + 400,
+        y: selectedNode.position.y + 300,
       },
       data,
       type,
@@ -48,7 +48,7 @@ export const useControls = (): ControlHooks => {
   const addDescriptionNode = () => {
     const [newNode, newEdge] = extractEdge(
       CELL_PREFIX.DESCRIPTION_CELL_PREFIX,
-      { content: "another cell" }
+      { content: "another cell" },
     );
     reactFlowInstance.addNodes(newNode);
     reactFlowInstance.addEdges(newEdge);
