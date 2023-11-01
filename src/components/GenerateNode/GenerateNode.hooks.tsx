@@ -6,8 +6,10 @@ import {
   generateEdgeId,
   generateNodeId,
 } from "../../utils/generateId";
-import { generateCode } from "../../chat/generation";
+import { GptSingleResponse, generateCode } from "../../chat/generation";
 import { CodingNodeType } from "../CodingNode/CodingNode";
+import { DescriptionNodeType } from "../DescriptionNode/DescriptionNode";
+import { GrphBookNode } from "../../notebook/NoteBook";
 
 export const useGenerateControls = (data: GenerateNodeData) => {
   const flowInstance = useReactFlow();
@@ -20,7 +22,8 @@ export const useGenerateControls = (data: GenerateNodeData) => {
   const getCurrentNode = (): Array<Node> => [
     ...flowInstance.getNodes().filter(node => node.selected),
   ];
-  const createCodingNode = (code: string | null) => {
+  const createGeneratedNodes = (response: GptSingleResponse) => {
+    const { code, description } = response;
     const selectedNode = getCurrentNode()[0];
     const selectedEdge: Edge = flowInstance
       .getEdges()
@@ -28,6 +31,7 @@ export const useGenerateControls = (data: GenerateNodeData) => {
     const sourceNode: Node = flowInstance
       .getNodes()
       .filter(node => node.id === selectedEdge.source)[0];
+
     const newCodingNode: CodingNodeType = {
       id: generateNodeId(CELL_PREFIX.CODING_CELL_PREFIX),
       type: CELL_PREFIX.CODING_CELL_PREFIX,
@@ -45,18 +49,48 @@ export const useGenerateControls = (data: GenerateNodeData) => {
       source: sourceNode.id,
       target: newCodingNode.id,
     };
+    const nodeList: Array<GrphBookNode> = [newCodingNode];
+    const edgeList = [newEdge];
+    if (description) {
+      // Update the coding & description node configuration in the case
+      nodeList[0].position.y += 300;
+      nodeList[0].data.order += 1;
+      const newDescriptionNode: DescriptionNodeType = {
+        id: generateNodeId(CELL_PREFIX.DESCRIPTION_CELL_PREFIX),
+        type: CELL_PREFIX.DESCRIPTION_CELL_PREFIX,
+        position: {
+          x: sourceNode.position.x,
+          y: sourceNode.position.y + 300,
+        },
+        data: {
+          content: description,
+          order: sourceNode.data.order + 1,
+        },
+      };
+      edgeList[0].id = generateEdgeId(newDescriptionNode.id, newCodingNode.id);
+      edgeList[0].source = newDescriptionNode.id;
+      const newDescriptionEdge: Edge = {
+        id: generateEdgeId(sourceNode.id, newDescriptionNode.id),
+        source: sourceNode.id,
+        target: newCodingNode.id,
+      };
+      nodeList.push(newDescriptionNode);
+      edgeList.push(newDescriptionEdge);
+    }
 
     // Deleting the current node
     flowInstance.deleteElements({ nodes: [selectedNode] });
     // Adding the new node and edge
-    flowInstance.addNodes(newCodingNode);
-    flowInstance.addEdges(newEdge);
+    flowInstance.addNodes(nodeList);
+    flowInstance.addEdges(edgeList);
   };
 
   const handleGenerate: MouseEventHandler = _event => {
     setLoading(true);
-    generateCode(input).then(code => {
-      createCodingNode(code);
+    generateCode(input, includeMd).then(response => {
+      if (response) {
+        createGeneratedNodes(response);
+      }
       setLoading(false);
     });
   };
