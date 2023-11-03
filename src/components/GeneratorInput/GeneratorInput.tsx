@@ -36,6 +36,7 @@ export const GeneratorInput = (props: GeneratorInputProps) => {
           icon={PlayIcon}
           aria-label="Generate Code"
           className={`${commonStyles["button"]}`}
+          disabled={props.loading}
         />
       }
     />

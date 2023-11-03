@@ -16,13 +16,10 @@ export const generateCode = async (
     dangerouslyAllowBrowser: true,
   });
 
-  const systemMessage = {
-    role: "system",
-    content:
-      "You return only concise python code for the given prompt. Do not return anything other than the code snippet.",
-  };
+  let systemMsgContent =
+    "You return only concise python code for the given prompt. Do not return anything other than the code snippet.";
   if (includeDescription) {
-    systemMessage.content =
+    systemMsgContent =
       'You return only python code and a short description. The response should first contain the code and then the description. Start description with keyword "Description: ".';
   }
 
@@ -31,8 +28,7 @@ export const generateCode = async (
     messages: [
       {
         role: "system",
-        content:
-          "You return only concise python code for the given prompt. Do not return anything other than the code snippet.",
+        content: systemMsgContent,
       },
       {
         role: "user",
@@ -43,13 +39,15 @@ export const generateCode = async (
   });
   const responseMsg = response["choices"][0]["message"]["content"];
   if (includeDescription) {
-    return parseResponse(responseMsg);
+    return parseResponseWithDescription(responseMsg);
   } else {
     return { code: responseMsg, description: null };
   }
 };
 
-export const parseResponse = (response: string | null): GptSingleResponse => {
+export const parseResponseWithDescription = (
+  response: string | null,
+): GptSingleResponse => {
   const emptyResponse = { code: null, description: null };
   if (!response) {
     return emptyResponse;
@@ -57,7 +55,7 @@ export const parseResponse = (response: string | null): GptSingleResponse => {
   const splitString = response.split(DESCRIPTION_DELIMITER);
   // Return an empty response
   if (splitString.length === 1) {
-    return emptyResponse;
+    return { code: splitString[0], description: null };
   }
   const descriptionString = splitString[1];
   let codeString = "";

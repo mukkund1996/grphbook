@@ -87,20 +87,29 @@ export const useGenerateControls = (data: GenerateNodeData) => {
 
   const handleGenerate: MouseEventHandler = _event => {
     setLoading(true);
-    generateCode(input, includeMd).then(response => {
-      if (response) {
-        createGeneratedNodes(response);
-      }
-      setLoading(false);
-    });
+    generateCode(input, includeMd)
+      .then(response => {
+        if (response) {
+          createGeneratedNodes(response);
+        }
+        setLoading(false);
+      })
+      .catch(_error => {
+        console.error("Cannot parse the response! Check prompt");
+        deleteGenerateNode();
+      });
   };
 
   const handleToggle: MouseEventHandler = _event => {
     setIncludeMd(!includeMd);
   };
 
-  const handleDelete: MouseEventHandler = _event => {
+  const deleteGenerateNode = () => {
     flowInstance.deleteElements({ nodes: getCurrentNode() });
+  };
+
+  const handleDelete: MouseEventHandler = _event => {
+    deleteGenerateNode();
   };
 
   return {
