@@ -4,8 +4,7 @@ import { TextInput } from "@primer/react";
 
 import styles from "./GeneratorInput.module.css";
 import commonStyles from "../Styles/common.module.css";
-import { inputStyles } from "./GeneratorInput.styles";
-import { borderStyles } from "../Styles/common.styles";
+import { borderStyles, inputStyles } from "../Styles/common.styles";
 
 type GeneratorInputProps = {
   value: string;

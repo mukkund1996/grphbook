@@ -1,10 +1,20 @@
 import { ControlButton, Controls } from "reactflow";
 import { controlDiv, controlButtons } from "./Controls.styles";
-import { DownloadIcon, UploadIcon } from "@primer/octicons-react";
+import {
+  DownloadIcon,
+  KeyIcon,
+  PlayIcon,
+  UploadIcon,
+} from "@primer/octicons-react";
 import DownloadDialog from "./DownloadDialog/DownloadDialog";
 import { useDownloadRoutes } from "./DownloadDialog/DownloadDialog.hooks";
 import { useUploadControls } from "./UploadDialog/UploadDialog.hooks";
 import { UploadDialog } from "./UploadDialog/UploadDIalog";
+import { TextInput } from "@primer/react";
+
+import controlStyles from "./Controls.module.css";
+import commonStyles from "../Styles/common.module.css";
+import { borderStyles, inputStyles } from "../Styles/common.styles";
 
 const CustomControl: React.FC = () => {
   const {
@@ -57,6 +67,25 @@ const CustomControl: React.FC = () => {
         content={uploadContent}
         setContent={setUploadContent}
         anchorRef={anchorRefUpload}
+      />
+      <TextInput
+        className={controlStyles["api-input"]}
+        sx={{ ...borderStyles, ...inputStyles }}
+        type="password"
+        leadingVisual={KeyIcon}
+        aria-label={"GPTAI API Key"}
+        name="api-key-input"
+        placeholder="Enter your API Key"
+        trailingAction={
+          <TextInput.Action
+            id="input-api-btn"
+            // onClick={props.handleGenerate}
+            icon={PlayIcon}
+            aria-label="Input API Key"
+            className={`${commonStyles["button"]}`}
+            // disabled={props.loading}
+          />
+        }
       />
     </Controls>
   );

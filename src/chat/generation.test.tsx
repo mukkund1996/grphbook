@@ -55,6 +55,8 @@ describe("tests the chat parsing", () => {
     const testResponse = [
       "Sure! Here's an example of a function that plots two arrays of numbers using Python's matplotlib library:",
       "\n",
+      "Code: ",
+      "\n",
       "```python",
       "import matplotlib.pyplot as plt",
       "def plot_arrays(x, y):",

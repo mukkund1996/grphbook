@@ -1,0 +1,19 @@
+.api-input {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+
+.api-input:hover {
+  width: 200px;
+}
+
+.api-input > span:last-child,
+.api-input > input {
+  display: none;
+}
+
+.api-input:hover > span:last-child,
+.api-input:hover > input {
+  display: inline-block;
+}

@@ -28,3 +28,7 @@ export const textStyles: CSSProperties = {
   borderRadius: "5px",
   marginBottom: "15px",
 };
+
+export const inputStyles: CSSProperties = {
+  minHeight: "45px",
+};

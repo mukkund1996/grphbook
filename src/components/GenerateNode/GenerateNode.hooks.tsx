@@ -49,12 +49,10 @@ export const useGenerateControls = (data: GenerateNodeData) => {
       source: sourceNode.id,
       target: newCodingNode.id,
     };
-    const nodeList: Array<GrphBookNode> = [newCodingNode];
-    const edgeList = [newEdge];
+    let nodeList: Array<GrphBookNode> = [newCodingNode];
+    let edgeList: Array<Edge> = [newEdge];
     if (description) {
       // Update the coding & description node configuration in the case
-      nodeList[0].position.y += 300;
-      nodeList[0].data.order += 1;
       const newDescriptionNode: DescriptionNodeType = {
         id: generateNodeId(CELL_PREFIX.DESCRIPTION_CELL_PREFIX),
         type: CELL_PREFIX.DESCRIPTION_CELL_PREFIX,
@@ -67,15 +65,30 @@ export const useGenerateControls = (data: GenerateNodeData) => {
           order: sourceNode.data.order + 1,
         },
       };
-      edgeList[0].id = generateEdgeId(newDescriptionNode.id, newCodingNode.id);
-      edgeList[0].source = newDescriptionNode.id;
-      const newDescriptionEdge: Edge = {
-        id: generateEdgeId(sourceNode.id, newDescriptionNode.id),
-        source: sourceNode.id,
-        target: newCodingNode.id,
+      const updatedCodingNode: CodingNodeType = {
+        ...newCodingNode,
+        position: {
+          x: sourceNode.position.x,
+          y: newDescriptionNode.position.y + 300,
+        },
+        data: {
+          ...newCodingNode.data,
+          order: newDescriptionNode.data.order + 1,
+        },
       };
-      nodeList.push(newDescriptionNode);
-      edgeList.push(newDescriptionEdge);
+      nodeList = [newDescriptionNode, updatedCodingNode];
+      edgeList = [
+        {
+          id: generateEdgeId(sourceNode.id, newDescriptionNode.id),
+          source: sourceNode.id,
+          target: newDescriptionNode.id,
+        },
+        {
+          id: generateEdgeId(newDescriptionNode.id, newCodingNode.id),
+          source: newDescriptionNode.id,
+          target: newCodingNode.id,
+        },
+      ];
     }
 
     // Deleting the current node
