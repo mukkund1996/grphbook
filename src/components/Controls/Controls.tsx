@@ -15,6 +15,7 @@ import { TextInput } from "@primer/react";
 import controlStyles from "./Controls.module.css";
 import commonStyles from "../Styles/common.module.css";
 import { borderStyles, inputStyles } from "../Styles/common.styles";
+import { useApi } from "../../hooks/useApi";
 
 const CustomControl: React.FC = () => {
   const {
@@ -34,6 +35,12 @@ const CustomControl: React.FC = () => {
     setContent: setUploadContent,
     anchorRef: anchorRefUpload,
   } = useUploadControls();
+
+  const {
+    localInput: userApiInput,
+    apiInputHandler,
+    apiSubmitHandler,
+  } = useApi();
 
   return (
     <Controls
@@ -76,14 +83,15 @@ const CustomControl: React.FC = () => {
         aria-label={"GPTAI API Key"}
         name="api-key-input"
         placeholder="Enter your API Key"
+        value={userApiInput}
+        onChange={apiInputHandler}
         trailingAction={
           <TextInput.Action
             id="input-api-btn"
-            // onClick={props.handleGenerate}
+            onClick={apiSubmitHandler}
             icon={PlayIcon}
             aria-label="Input API Key"
             className={`${commonStyles["button"]}`}
-            // disabled={props.loading}
           />
         }
       />

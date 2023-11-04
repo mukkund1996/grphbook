@@ -1,4 +1,4 @@
-import { MouseEventHandler, useState } from "react";
+import { MouseEventHandler, useContext, useState } from "react";
 import { ReactFlowInstance, useReactFlow, Node, Edge } from "reactflow";
 import { GenerateNodeData } from "./GenerateNode";
 import {
@@ -10,9 +10,11 @@ import { GptSingleResponse, generateCode } from "../../chat/generation";
 import { CodingNodeType } from "../CodingNode/CodingNode";
 import { DescriptionNodeType } from "../DescriptionNode/DescriptionNode";
 import { GrphBookNode } from "../../notebook/NoteBook";
+import { ApiContext } from "../context/ApiContext";
 
 export const useGenerateControls = (data: GenerateNodeData) => {
   const flowInstance = useReactFlow();
+  const { apiKey } = useContext(ApiContext);
 
   // TODO: Set default to true
   const [includeMd, setIncludeMd] = useState(false);
@@ -100,7 +102,7 @@ export const useGenerateControls = (data: GenerateNodeData) => {
 
   const handleGenerate: MouseEventHandler = _event => {
     setLoading(true);
-    generateCode(input, includeMd)
+    generateCode(input, includeMd, apiKey)
       .then(response => {
         if (response) {
           createGeneratedNodes(response);
