@@ -22,6 +22,7 @@ import { INITIAL_EDGES, INITIAL_NODES } from "../../state/InitialState";
 import GenerateNode from "../GenerateNode/GenerateNode";
 
 import "reactflow/dist/style.css";
+import styles from "./Flow.module.css";
 
 const nodeTypes: NodeTypes = {
   codingCell: CodingNode,
@@ -63,6 +64,9 @@ const Flow: React.FC = () => {
         color="#f1f1f1"
         variant={BackgroundVariant.Lines}
       />
+      <div className={styles["icon"]}>
+        <span></span>
+      </div>
     </ReactFlow>
   );
 };

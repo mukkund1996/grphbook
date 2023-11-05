@@ -20,6 +20,7 @@ export const GenerateNode = ({ data }: NodeProps<GenerateNodeData>) => {
   const {
     input,
     setInput,
+    errorMsg,
     includeMd,
     loading,
     handleToggle,
@@ -56,6 +57,9 @@ export const GenerateNode = ({ data }: NodeProps<GenerateNodeData>) => {
           Delete
         </Button>
       </div>
+      {errorMsg ? (
+        <p className={commonStyles["error-state"]}>{errorMsg}</p>
+      ) : null}
     </div>
   );
 };

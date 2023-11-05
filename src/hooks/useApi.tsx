@@ -18,7 +18,6 @@ export const useApi = () => {
   const apiSubmitHandler: MouseEventHandler<HTMLButtonElement> = _event => {
     if (localInput) {
       setApiKey(localInput);
-      console.log("submitted");
     }
   };
 

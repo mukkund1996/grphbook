@@ -13,7 +13,7 @@ export const generateCode = async (
   apiKey: string | null,
 ): Promise<GptSingleResponse | null> => {
   const openai = new OpenAI({
-    apiKey: process.env.REACT_APP_OPENAI_API_KEY || "",
+    apiKey: apiKey || "",
     dangerouslyAllowBrowser: true,
   });
 

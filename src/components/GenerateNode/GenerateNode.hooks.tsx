@@ -20,6 +20,7 @@ export const useGenerateControls = (data: GenerateNodeData) => {
   const [includeMd, setIncludeMd] = useState(false);
   const [input, setInput] = useState(data.content);
   const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   const getCurrentNode = (): Array<Node> => [
     ...flowInstance.getNodes().filter(node => node.selected),
@@ -101,6 +102,7 @@ export const useGenerateControls = (data: GenerateNodeData) => {
   };
 
   const handleGenerate: MouseEventHandler = _event => {
+    setErrorMsg(null);
     setLoading(true);
     generateCode(input, includeMd, apiKey)
       .then(response => {
@@ -109,9 +111,13 @@ export const useGenerateControls = (data: GenerateNodeData) => {
         }
         setLoading(false);
       })
-      .catch(_error => {
-        console.error("Cannot parse the response! Check prompt");
-        deleteGenerateNode();
+      .catch(error => {
+        setLoading(false);
+        if (error.code === "invalid_api_key") {
+          setErrorMsg("Invalid API key.");
+        } else {
+          setErrorMsg("Cannot parse the response! Check prompt");
+        }
       });
   };
 
@@ -130,6 +136,7 @@ export const useGenerateControls = (data: GenerateNodeData) => {
   return {
     input,
     setInput,
+    errorMsg,
     includeMd,
     loading,
     handleToggle,

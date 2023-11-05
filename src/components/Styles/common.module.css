@@ -1,17 +1,17 @@
 .border {
-  border: 3px solid #f4f4f4;
+  border: 3px solid #f4f4f7;
   border-radius: 10px;
   background: #fff;
 }
 
 .button {
-  background: #f4f4f4;
+  background: #f4f4f7;
   border-radius: 5px;
   margin: 0 1%;
 }
 
 .button:hover {
-  background-color: aliceblue;
+  background-color: #f1e4d6;
 }
 
 .node {
@@ -26,4 +26,12 @@
 
 .node-highlighted {
   border: 5px solid #ff9999;
+}
+
+.error-state {
+  color: crimson;
+  text-align: left;
+  width: 90%;
+  margin: 10px 0 auto;
+  font-size: 13px;
 }
