@@ -63,6 +63,8 @@ export const parseResponseWithDescription = (
   const matchedCodeSnippets = _findContentInBackticks(splitString[0]);
   if (matchedCodeSnippets.length) {
     codeString = matchedCodeSnippets[0];
+  } else if (splitString[0] !== "") {
+    codeString = splitString[0];
   }
   return { code: codeString, description: descriptionString };
 };
