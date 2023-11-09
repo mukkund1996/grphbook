@@ -38,12 +38,32 @@ const Flow: React.FC = () => {
     [setNodes],
   );
   const onEdgesChange: OnEdgesChange = useCallback(
-    changes => setEdges(eds => applyEdgeChanges(changes, eds)),
+    changes => {
+      const validChanges = [
+        ...changes.filter(change => {
+          // Do not allow for manual deletion of edges
+          if (change.type === "remove") {
+            return false;
+          }
+          return true;
+        }),
+      ];
+      setEdges(eds => applyEdgeChanges(validChanges, eds));
+    },
     [setEdges],
   );
   const onConnect = useCallback(
-    (params: Edge | Connection) => setEdges(els => addEdge(params, els)),
-    [setEdges],
+    (params: Edge | Connection) => {
+      // Do not allow edges having the same target from different sources
+      const newEdgeTarget = params.target;
+      const multipleTargetEdgeExists = Boolean(
+        edges.find(edge => edge.target === newEdgeTarget),
+      );
+      if (!multipleTargetEdgeExists) {
+        setEdges(els => addEdge(params, els));
+      }
+    },
+    [edges],
   );
 
   return (
