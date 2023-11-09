@@ -18,7 +18,7 @@ import {
 import CodingNode from "../CodingNode/CodingNode";
 import DescriptionNode from "../DescriptionNode/DescriptionNode";
 import CustomControl from "../Controls/Controls";
-import { INITIAL_EDGES, INITIAL_NODES } from "../../state/InitialState";
+import { INITIAL_EDGES, INITIAL_NODES } from "../../state/SampleState";
 import GenerateNode from "../GenerateNode/GenerateNode";
 
 import "reactflow/dist/style.css";
