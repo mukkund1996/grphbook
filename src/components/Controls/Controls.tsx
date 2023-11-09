@@ -1,4 +1,4 @@
-import { ControlButton, Controls } from "reactflow";
+import { ControlButton, Controls, useReactFlow } from "reactflow";
 import { controlDiv, controlButtons } from "./Controls.styles";
 import {
   DownloadIcon,
@@ -18,7 +18,8 @@ import { borderStyles, inputStyles } from "../Styles/common.styles";
 import { useApi } from "../../hooks/useApi";
 import IconPages from "../Icons/IconPages";
 import IconGraphOutline from "../Icons/IconGraphOutline";
-import { useState } from "react";
+import { MouseEventHandler, useState } from "react";
+import { generateSampleLayout } from "../../state/SampleLayout";
 
 const CustomControl: React.FC = () => {
   const {
@@ -45,8 +46,18 @@ const CustomControl: React.FC = () => {
     apiSubmitHandler,
   } = useApi();
 
+  const flowInstance = useReactFlow();
   const [showPrompt, setShowPrompt] = useState(true);
-  
+  const handleBlankStart: MouseEventHandler<HTMLLIElement> = _event => {
+    setShowPrompt(false);
+    setShowUpload(true);
+  };
+  const handleSampleLayoutStart: MouseEventHandler<HTMLLIElement> = _event => {
+    const { nodes, edges } = generateSampleLayout();
+    flowInstance.setNodes(nodes);
+    flowInstance.setEdges(edges);
+    setShowPrompt(false);
+  };
 
   return (
     <Controls
@@ -116,7 +127,7 @@ const CustomControl: React.FC = () => {
                 <span>Start from blank</span>
               </div>
             </ActionList.Item>
-            <ActionList.Item onClick={handleBlankStart}>
+            <ActionList.Item onClick={handleSampleLayoutStart}>
               <div className={controlStyles["prompt-selection"]}>
                 <IconGraphOutline height={"7rem"} width={"7rem"} />
                 <span>Use a starting layout</span>

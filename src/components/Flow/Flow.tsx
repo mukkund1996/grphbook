@@ -18,7 +18,6 @@ import {
 import CodingNode from "../CodingNode/CodingNode";
 import DescriptionNode from "../DescriptionNode/DescriptionNode";
 import CustomControl from "../Controls/Controls";
-import { INITIAL_EDGES, INITIAL_NODES } from "../../state/SampleState";
 import GenerateNode from "../GenerateNode/GenerateNode";
 
 import "reactflow/dist/style.css";
@@ -31,8 +30,8 @@ const nodeTypes: NodeTypes = {
 };
 
 const Flow: React.FC = () => {
-  const [nodes, setNodes] = useState<Array<Node>>(INITIAL_NODES);
-  const [edges, setEdges] = useState<Array<Edge>>(INITIAL_EDGES);
+  const [nodes, setNodes] = useState<Array<Node>>([]);
+  const [edges, setEdges] = useState<Array<Edge>>([]);
 
   const onNodesChange: OnNodesChange = useCallback(
     changes => setNodes(nds => applyNodeChanges(changes, nds)),
