@@ -6,6 +6,7 @@ import { useCodingNode } from "./CodingNode.hooks";
 
 import styles from "./CodingNode.module.css";
 import commonStyles from "../Styles/common.module.css";
+import { Icon } from "@iconify/react";
 
 export type CodingNodeData = {
   code: string;
@@ -36,7 +37,14 @@ const CodingNode = ({ data }: NodeProps<CodingNodeData>) => {
         onMount={handleEditorDidMount}
         onChange={handleEditorChange}
       />
-      <NodeControls />
+      <NodeControls
+        Icon={
+          <Icon
+            icon="akar-icons:python-fill"
+            className={commonStyles["icon-marker"]}
+          />
+        }
+      />
       <Handle type="source" position={Position.Bottom} id="b" />
     </div>
   );

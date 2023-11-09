@@ -11,6 +11,7 @@ import { baseButtonStyles, textStyles } from "../Styles/common.styles";
 import commonStyles from "../Styles/common.module.css";
 import styles from "./DescriptionNode.module.css";
 import { PaintbrushIcon, PencilIcon } from "@primer/octicons-react";
+import { Icon } from "@iconify/react";
 
 export type DescriptionNodeData = {
   content: string;
@@ -55,7 +56,15 @@ const DescriptionNode = ({ data }: NodeProps<DescriptionNodeData>) => {
           style={mdStyles}
         />
       ) : null}
-      <NodeControls auxillaryButton={MdButton} />
+      <NodeControls
+        auxillaryButton={MdButton}
+        Icon={
+          <Icon
+            icon="teenyicons:markdown-solid"
+            className={commonStyles["icon-marker"]}
+          />
+        }
+      />
       <Handle
         type="source"
         onConnect={(connection: Connection) => {

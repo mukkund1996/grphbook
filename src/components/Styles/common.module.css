@@ -35,3 +35,11 @@
   margin: 10px 0 auto;
   font-size: 13px;
 }
+
+.icon-marker {
+  position: absolute;
+  right: 5%;
+  color: #f1e4d6;
+  width: 1.5rem;
+  height: 1.5rem;
+}

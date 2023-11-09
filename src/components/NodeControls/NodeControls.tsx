@@ -8,10 +8,11 @@ import { baseButtonStyles } from "../Styles/common.styles";
 
 type NodeControlProps = {
   auxillaryButton?: React.FC;
+  Icon?: JSX.Element | JSX.Element[];
 };
 
-export const NodeControls: React.FC<NodeControlProps> = (props) => {
-  const { auxillaryButton: AuxillaryButton } = props;
+export const NodeControls: React.FC<NodeControlProps> = props => {
+  const { auxillaryButton: AuxillaryButton, Icon } = props;
   const { addCodingNode, addDescriptionNode, addGeneratorNode } = useControls();
   return (
     <div className={styles["control"]}>
@@ -37,6 +38,7 @@ export const NodeControls: React.FC<NodeControlProps> = (props) => {
       >
         <ZapIcon size={16} />
       </Button>
+      {Icon}
     </div>
   );
 };
