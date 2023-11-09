@@ -1,0 +1,40 @@
+.prompt-container {
+  position: fixed;
+  top: 6rem;
+  left: 20px;
+  z-index: 5;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 40vw;
+  height: 35vh;
+}
+
+.prompt-items {
+  height: 80%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.prompt-selection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3px;
+}
+
+.prompt-selection span {
+  font-size: large;
+  margin-top: 5px;
+  padding: 10px;
+  background: #f4f4f7;
+  border-radius: 5px;
+}
+
+.prompt-selection:hover span {
+  background: #f1e4d6;
+}

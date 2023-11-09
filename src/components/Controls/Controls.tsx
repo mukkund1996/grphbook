@@ -1,4 +1,4 @@
-import { ControlButton, Controls, useReactFlow } from "reactflow";
+import { ControlButton, Controls } from "reactflow";
 import { controlDiv, controlButtons } from "./Controls.styles";
 import {
   DownloadIcon,
@@ -10,16 +10,14 @@ import DownloadDialog from "./DownloadDialog/DownloadDialog";
 import { useDownloadRoutes } from "./DownloadDialog/DownloadDialog.hooks";
 import { useUploadControls } from "./UploadDialog/UploadDialog.hooks";
 import { UploadDialog } from "./UploadDialog/UploadDIalog";
-import { ActionList, TextInput } from "@primer/react";
+import { TextInput } from "@primer/react";
 
 import controlStyles from "./Controls.module.css";
 import commonStyles from "../Styles/common.module.css";
 import { borderStyles, inputStyles } from "../Styles/common.styles";
 import { useApi } from "../../hooks/useApi";
-import IconPages from "../Icons/IconPages";
-import IconGraphOutline from "../Icons/IconGraphOutline";
-import { MouseEventHandler, useState } from "react";
-import { generateSampleLayout } from "../../state/SampleLayout";
+import { StartupPrompt } from "./StartupPrompt/StartupPrompt";
+import { useStartupPrompt } from "./StartupPrompt/StartupPrompt.hooks";
 
 const CustomControl: React.FC = () => {
   const {
@@ -46,18 +44,8 @@ const CustomControl: React.FC = () => {
     apiSubmitHandler,
   } = useApi();
 
-  const flowInstance = useReactFlow();
-  const [showPrompt, setShowPrompt] = useState(true);
-  const handleBlankStart: MouseEventHandler<HTMLLIElement> = _event => {
-    setShowPrompt(false);
-    setShowUpload(true);
-  };
-  const handleSampleLayoutStart: MouseEventHandler<HTMLLIElement> = _event => {
-    const { nodes, edges } = generateSampleLayout();
-    flowInstance.setNodes(nodes);
-    flowInstance.setEdges(edges);
-    setShowPrompt(false);
-  };
+  const { showPrompt, handleBlankStart, handleSampleLayoutStart } =
+    useStartupPrompt(setShowUpload);
 
   return (
     <Controls
@@ -117,24 +105,10 @@ const CustomControl: React.FC = () => {
         </>
       )}
       {showPrompt && (
-        <div
-          className={`${controlStyles["prompt-container"]} ${commonStyles["border"]}`}
-        >
-          <ActionList className={controlStyles["prompt-items"]}>
-            <ActionList.Item onClick={handleBlankStart}>
-              <div className={controlStyles["prompt-selection"]}>
-                <IconPages height={"7rem"} width={"7rem"} />
-                <span>Start from blank</span>
-              </div>
-            </ActionList.Item>
-            <ActionList.Item onClick={handleSampleLayoutStart}>
-              <div className={controlStyles["prompt-selection"]}>
-                <IconGraphOutline height={"7rem"} width={"7rem"} />
-                <span>Use a starting layout</span>
-              </div>
-            </ActionList.Item>
-          </ActionList>
-        </div>
+        <StartupPrompt
+          handleBlankStart={handleBlankStart}
+          handleSampleLayoutStart={handleSampleLayoutStart}
+        />
       )}
     </Controls>
   );
