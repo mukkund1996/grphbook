@@ -4,6 +4,7 @@ import {
   DownloadIcon,
   KeyIcon,
   PlayIcon,
+  SyncIcon,
   UploadIcon,
 } from "@primer/octicons-react";
 import DownloadDialog from "./DownloadDialog/DownloadDialog";
@@ -44,8 +45,12 @@ const CustomControl: React.FC = () => {
     apiSubmitHandler,
   } = useApi();
 
-  const { showPrompt, handleBlankStart, handleSampleLayoutStart } =
-    useStartupPrompt(setShowUpload);
+  const {
+    showPrompt,
+    handleBlankStart,
+    handleSampleLayoutStart,
+    handleRefresh,
+  } = useStartupPrompt(setShowUpload);
 
   return (
     <Controls
@@ -56,8 +61,11 @@ const CustomControl: React.FC = () => {
     >
       {!showPrompt && (
         <>
+          <ControlButton style={controlButtons} onClick={handleRefresh}>
+            <SyncIcon />
+          </ControlButton>
           <ControlButton style={controlButtons} onClick={handleUploadOpen}>
-            <UploadIcon size={24} />
+            <UploadIcon />
           </ControlButton>
           <ControlButton
             aria-haspopup="true"

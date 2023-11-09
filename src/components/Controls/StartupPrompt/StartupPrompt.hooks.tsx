@@ -7,10 +7,12 @@ export const useStartupPrompt = (
 ) => {
   const flowInstance = useReactFlow();
   const [showPrompt, setShowPrompt] = useState(true);
+
   const handleBlankStart: MouseEventHandler<HTMLLIElement> = _event => {
     setShowPrompt(false);
     setShowUpload(true);
   };
+
   const handleSampleLayoutStart: MouseEventHandler<HTMLLIElement> = _event => {
     const { nodes, edges } = generateSampleLayout();
     flowInstance.setNodes(nodes);
@@ -18,9 +20,16 @@ export const useStartupPrompt = (
     setShowPrompt(false);
   };
 
+  const handleRefresh: MouseEventHandler<HTMLButtonElement> = _event => {
+    flowInstance.setNodes([]);
+    flowInstance.setEdges([]);
+    setShowPrompt(true);
+  };
+
   return {
     showPrompt,
     handleBlankStart,
     handleSampleLayoutStart,
+    handleRefresh,
   };
 };
