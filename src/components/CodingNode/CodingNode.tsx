@@ -7,6 +7,7 @@ import { useCodingNode } from "./CodingNode.hooks";
 import styles from "./CodingNode.module.css";
 import commonStyles from "../Styles/common.module.css";
 import { Icon } from "@iconify/react";
+import { GenerateDescriptionButton } from "./GenerateDescriptionButton";
 
 export type CodingNodeData = {
   code: string;
@@ -38,6 +39,7 @@ const CodingNode = ({ data }: NodeProps<CodingNodeData>) => {
         onChange={handleEditorChange}
       />
       <NodeControls
+        auxillaryButton={GenerateDescriptionButton}
         Icon={
           <Icon
             icon="akar-icons:python-fill"

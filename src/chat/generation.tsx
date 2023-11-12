@@ -7,6 +7,35 @@ export type GptSingleResponse = {
   code: string | null;
 };
 
+export const generateDescription = async (
+  prompt: string,
+  apiKey: string,
+): Promise<string> => {
+  const openai = new OpenAI({
+    apiKey: apiKey || "",
+    dangerouslyAllowBrowser: true,
+  });
+
+  const systemMsgContent =
+    'Provide a description for the given python code snippet. Do not include anything other than the description. Start with "The below code".';
+
+  const response = await openai.chat.completions.create({
+    model: "gpt-3.5-turbo",
+    messages: [
+      {
+        role: "system",
+        content: systemMsgContent,
+      },
+      {
+        role: "user",
+        content: prompt,
+      },
+    ],
+    ...CHAT_PARAMS,
+  });
+  return response["choices"][0]["message"]["content"] as string;
+};
+
 export const generateCode = async (
   prompt: string,
   includeDescription: boolean,

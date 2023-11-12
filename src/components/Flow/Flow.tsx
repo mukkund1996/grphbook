@@ -42,9 +42,9 @@ const Flow: React.FC = () => {
       const validChanges = [
         ...changes.filter(change => {
           // Do not allow for manual deletion of edges
-          if (change.type === "remove") {
-            return false;
-          }
+          // if (change.type === "remove") {
+          //   return false;
+          // }
           return true;
         }),
       ];
@@ -74,6 +74,7 @@ const Flow: React.FC = () => {
       onEdgesChange={onEdgesChange}
       onConnect={onConnect}
       nodeTypes={nodeTypes}
+      deleteKeyCode={null}
     >
       <MiniMap />
       <CustomControl />
