@@ -4,6 +4,9 @@ body,
 .app {
   height: 100%;
   margin: 0;
+  --highlight-color: #f1e4d6;
+  --secondary-color: #f4f4f7;
+  --error-state: #dc143c;
 }
 
 .app {

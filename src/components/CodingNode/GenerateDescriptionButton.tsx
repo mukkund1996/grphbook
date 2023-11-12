@@ -30,7 +30,7 @@ export const GenerateDescriptionButton: React.FC = () => {
         type: CELL_PREFIX.DESCRIPTION_CELL_PREFIX,
         position: {
           x: highlightedNode.position.x + NODE_X_BUFFER,
-          y: highlightedNode.position.y - NODE_Y_BUFFER / 2,
+          y: highlightedNode.position.y - NODE_Y_BUFFER,
         },
         data: {
           content: content,

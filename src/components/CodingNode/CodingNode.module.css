@@ -1,4 +1,4 @@
 .code-editor {
   margin-bottom: 15px;
-  border: 1px #f4f4f7 solid;
+  border: 1px var(--secondary-color) solid;
 }

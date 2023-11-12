@@ -1,17 +1,17 @@
 .border {
-  border: 3px solid #f4f4f7;
+  border: 3px solid var(--secondary-color);
   border-radius: 10px;
   background: #fff;
 }
 
 .button {
-  background: #f4f4f7;
+  background: var(--secondary-color);
   border-radius: 5px;
   margin: 0 1%;
 }
 
 .button:hover {
-  background-color: #f1e4d6;
+  background-color: var(--highlight-color);
 }
 
 .node {
@@ -29,7 +29,7 @@
 }
 
 .error-state {
-  color: crimson;
+  color: var(--error-state);
   text-align: left;
   width: 90%;
   margin: 10px 0 auto;
@@ -39,7 +39,7 @@
 .icon-marker {
   position: absolute;
   right: 5%;
-  color: #f1e4d6;
+  color: var(--highlight-color);
   width: 1.5rem;
   height: 1.5rem;
 }

@@ -3,7 +3,7 @@
 }
 
 .route-label:hover {
-  background-color: #f4f4f7;
+  background-color: var(--secondary-color);
 }
 
 .download-label:hover {

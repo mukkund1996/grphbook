@@ -31,10 +31,10 @@
   font-size: large;
   margin-top: 5px;
   padding: 10px;
-  background: #f4f4f7;
+  background: var(--secondary-color);
   border-radius: 5px;
 }
 
 .prompt-selection:hover span {
-  background: #f1e4d6;
+  background: var(--highlight-color);
 }

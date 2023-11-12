@@ -3,8 +3,8 @@
 }
 
 .toggle-area {
-  border: 3px #f4f4f7 solid;
-  background-color: #f4f4f7;
+  border: 3px var(--secondary-color) solid;
+  background-color: var(--secondary-color);
   padding: 0px 5px;
   border-radius: 5px;
 }
