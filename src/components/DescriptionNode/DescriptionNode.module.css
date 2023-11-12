@@ -1,7 +1,7 @@
 .md-box {
   height: auto;
   width: 90%;
-  border: solid #f4f4f4;
+  border: solid #f4f4f7;
   border-radius: 10px;
   text-align: left;
   margin-bottom: 15px;
@@ -9,6 +9,6 @@
 .md-box > * {
   padding: 10px 20px;
   border: none;
-  background-color: #f4f4f4;
+  background-color: #f4f4f7;
   color: #000;
 }
