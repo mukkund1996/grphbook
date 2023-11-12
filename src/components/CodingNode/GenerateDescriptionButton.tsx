@@ -14,6 +14,7 @@ import {
   generateEdgeId,
   generateNodeId,
 } from "../../utils/generateId";
+import { NODE_Y_BUFFER } from "../../config/config";
 
 export const GenerateDescriptionButton: React.FC = () => {
   const flowInstance = useReactFlow();
@@ -28,8 +29,8 @@ export const GenerateDescriptionButton: React.FC = () => {
         id: generateNodeId(CELL_PREFIX.DESCRIPTION_CELL_PREFIX),
         type: CELL_PREFIX.DESCRIPTION_CELL_PREFIX,
         position: {
-          x: highlightedNode.position.x + 300,
-          y: highlightedNode.position.y - 300,
+          x: highlightedNode.position.x + NODE_Y_BUFFER,
+          y: highlightedNode.position.y - NODE_Y_BUFFER,
         },
         data: {
           content: content,

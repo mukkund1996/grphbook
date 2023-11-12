@@ -6,6 +6,7 @@ import {
 } from "../utils/generateId";
 import { GrphBookNode } from "../notebook/NoteBook";
 import { GenerateNodeType } from "../components/GenerateNode/GenerateNode";
+import { NODE_Y_BUFFER } from "../config/config";
 
 export interface ControlHooks {
   addCodingNode: () => void;
@@ -26,7 +27,7 @@ export const useControls = (): ControlHooks => {
       id: generateNodeId(type),
       position: {
         x: selectedNode.position.x,
-        y: selectedNode.position.y + 300,
+        y: selectedNode.position.y + NODE_Y_BUFFER,
       },
       data,
       type,

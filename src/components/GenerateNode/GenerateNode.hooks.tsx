@@ -11,6 +11,7 @@ import { CodingNodeType } from "../CodingNode/CodingNode";
 import { DescriptionNodeType } from "../DescriptionNode/DescriptionNode";
 import { GrphBookNode } from "../../notebook/NoteBook";
 import { ApiContext } from "../context/ApiContext";
+import { NODE_Y_BUFFER } from "../../config/config";
 
 export const useGenerateControls = (data: GenerateNodeData) => {
   const flowInstance = useReactFlow();
@@ -40,7 +41,7 @@ export const useGenerateControls = (data: GenerateNodeData) => {
       type: CELL_PREFIX.CODING_CELL_PREFIX,
       position: {
         x: sourceNode.position.x,
-        y: sourceNode.position.y + 300,
+        y: sourceNode.position.y + NODE_Y_BUFFER,
       },
       data: {
         code: code ?? "",
@@ -61,7 +62,7 @@ export const useGenerateControls = (data: GenerateNodeData) => {
         type: CELL_PREFIX.DESCRIPTION_CELL_PREFIX,
         position: {
           x: sourceNode.position.x,
-          y: sourceNode.position.y + 300,
+          y: sourceNode.position.y + NODE_Y_BUFFER,
         },
         data: {
           content: description,
@@ -72,7 +73,7 @@ export const useGenerateControls = (data: GenerateNodeData) => {
         ...newCodingNode,
         position: {
           x: sourceNode.position.x,
-          y: newDescriptionNode.position.y + 300,
+          y: newDescriptionNode.position.y + NODE_Y_BUFFER,
         },
         data: {
           ...newCodingNode.data,
