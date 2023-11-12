@@ -4,7 +4,8 @@ body,
 .app {
   height: 100%;
   margin: 0;
-  --highlight-color: #f1e4d6;
+  --highlight-color: #507dbc;
+  --highlight-text-color: #fff;
   --secondary-color: #f4f4f7;
   --error-state: #dc143c;
 }

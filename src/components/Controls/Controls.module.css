@@ -17,3 +17,11 @@
 .api-input:hover > input {
   display: inline-block;
 }
+
+.control-btn {
+  background-color: var(--primary-color);
+}
+.control-btn:hover {
+  background-color: var(--highlight-color) !important;
+  color: var(--highlight-text-color);
+}

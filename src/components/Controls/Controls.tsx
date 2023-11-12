@@ -61,13 +61,22 @@ const CustomControl: React.FC = () => {
     >
       {!showPrompt && (
         <>
-          <ControlButton style={controlButtons} onClick={handleRefresh}>
+          <ControlButton
+            className={controlStyles["control-btn"]}
+            style={controlButtons}
+            onClick={handleRefresh}
+          >
             <SyncIcon />
           </ControlButton>
-          <ControlButton style={controlButtons} onClick={handleUploadOpen}>
+          <ControlButton
+            className={controlStyles["control-btn"]}
+            style={controlButtons}
+            onClick={handleUploadOpen}
+          >
             <UploadIcon />
           </ControlButton>
           <ControlButton
+            className={controlStyles["control-btn"]}
             aria-haspopup="true"
             aria-expanded={showDownload}
             onClick={handleDownloadOpen}

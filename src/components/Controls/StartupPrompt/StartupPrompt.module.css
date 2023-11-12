@@ -37,4 +37,11 @@
 
 .prompt-selection:hover span {
   background: var(--highlight-color);
+  color: var(--highlight-text-color);
+}
+
+.icon {
+  color: var(--highlight-color);
+  height: 7rem;
+  width: 7rem;
 }

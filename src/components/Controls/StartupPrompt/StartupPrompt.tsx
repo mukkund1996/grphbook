@@ -18,13 +18,13 @@ export const StartupPrompt = (props: StartupPromptProps) => {
       <ActionList className={styles["prompt-items"]}>
         <ActionList.Item onClick={handleBlankStart}>
           <div className={styles["prompt-selection"]}>
-            <IconPages height={"7rem"} width={"7rem"} />
+            <IconPages className={styles["icon"]} />
             <span>Start from blank</span>
           </div>
         </ActionList.Item>
         <ActionList.Item onClick={handleSampleLayoutStart}>
           <div className={styles["prompt-selection"]}>
-            <IconGraphOutline height={"7rem"} width={"7rem"} />
+            <IconGraphOutline className={styles["icon"]} />
             <span>Use a starting layout</span>
           </div>
         </ActionList.Item>

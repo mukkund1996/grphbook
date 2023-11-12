@@ -17,7 +17,7 @@
 .icon span::before {
   content: "grphbook";
   font-family: "Comfortaa", sans-serif;
-  color: #b6bcd3;
+  color: var(--highlight-color);
   letter-spacing: -0.15rem;
   font-size: 72px;
   animation: font-transition 2s ease-in-out 1s 1 forwards normal;
@@ -41,24 +41,24 @@
     content: "grphboo";
     font-size: 63px;
     font-weight: 700;
-    color: aqua;
+    color: #4c212a;
   }
   50% {
     content: "grphbo";
     font-size: 54px;
     font-weight: 700;
-    color: blueviolet;
+    color: #ca2e55;
   }
   75% {
     content: "grphb";
     font-size: 45px;
     font-weight: 700;
-    color: chartreuse;
+    color: #d77a61;
   }
   100% {
     content: "grph";
     font-size: 36px;
     font-weight: 700;
-    color: #b4886e;
+    color: var(--highlight-color);
   }
 }

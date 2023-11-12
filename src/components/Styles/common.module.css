@@ -12,6 +12,7 @@
 
 .button:hover {
   background-color: var(--highlight-color);
+  color: var(--highlight-text-color);
 }
 
 .node {
