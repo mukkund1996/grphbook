@@ -86,7 +86,7 @@ export const GenerateDescriptionButton: React.FC = () => {
   };
   return (
     <Button
-      leadingIcon={!loading ? InfoIcon : Spinner}
+      leadingIcon={!loading ? InfoIcon : () => <Spinner size={"small"} />}
       className={commonStyles["button"]}
       sx={baseButtonStyles}
       variant="outline"
