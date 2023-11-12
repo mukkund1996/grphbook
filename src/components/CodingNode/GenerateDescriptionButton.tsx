@@ -1,7 +1,7 @@
-import { MouseEventHandler, useContext } from "react";
+import { MouseEventHandler, useContext, useState } from "react";
 import { ApiContext } from "../context/ApiContext";
 import { generateDescription } from "../../chat/generation";
-import { Button } from "@primer/react";
+import { Button, Spinner } from "@primer/react";
 
 import commonStyles from "../Styles/common.module.css";
 import { InfoIcon } from "@primer/octicons-react";
@@ -18,6 +18,7 @@ import {
 export const GenerateDescriptionButton: React.FC = () => {
   const flowInstance = useReactFlow();
   const { apiKey } = useContext(ApiContext);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const createDescriptionNode = (content: string) => {
     const highlightedNode = getHighlightedNode(flowInstance);
@@ -74,23 +75,25 @@ export const GenerateDescriptionButton: React.FC = () => {
   > = _event => {
     const highlightedNode = getHighlightedNode(flowInstance);
     if (apiKey && highlightedNode && "code" in highlightedNode.data) {
-      console.log("Generating response");
+      setLoading(true);
       generateDescription(highlightedNode?.data.code, apiKey).then(
         description => {
           createDescriptionNode(description);
+          setLoading(false);
         },
       );
     }
   };
   return (
     <Button
-      leadingIcon={InfoIcon}
+      leadingIcon={!loading ? InfoIcon : Spinner}
       className={commonStyles["button"]}
       sx={baseButtonStyles}
       variant="outline"
       onClick={handleGenerateDescription}
+      disabled={loading}
     >
-      Explain
+      {!loading ? "Explain" : "Generating..."}
     </Button>
   );
 };
