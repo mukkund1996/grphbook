@@ -1,3 +1,6 @@
+@import "variables";
+@import "utilities";
+
 * {
   margin: 0;
   padding: 0;
@@ -10,4 +13,80 @@ body {
 
 a {
   text-decoration: none;
+  color: $dark-color;
+}
+
+ul {
+  list-style: none;
+}
+
+h2,
+h3,
+h4 {
+  text-transform: uppercase;
+}
+
+img {
+  width: 100%;
+}
+
+// Logo
+#logo {
+  font-family: "Comfortaa", sans-serif;
+  color: $main-color;
+  letter-spacing: -0.15rem;
+  font-weight: 700;
+  font-size: 48px;
+}
+
+// Main Nav
+#main-nav {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1rem;
+
+  ul {
+    display: flex;
+  }
+
+  li {
+    padding: 1rem 1.5rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: #000;
+    text-transform: uppercase;
+    border: 3px transparent solid;
+    padding: 0.5rem;
+    transition: border-color 0.5s, background-color 0.5s;
+
+    &:hover {
+      border-color: $dark-color;
+      background-color: $medium-color;
+    }
+
+    &.current {
+      border-color: $main-color;
+    }
+  }
+}
+
+// Header
+#header {
+  &-home {
+    background: $bg-image no-repeat center right / cover;
+    height: 70vh;
+    color: #000;
+    // Header Content
+    .header-content {
+      text-align: center;
+      padding-top: 20%;
+
+      h1 {
+        font-size: 3rem;
+        line-height: 1.2;
+      }
+    }
+  }
 }
