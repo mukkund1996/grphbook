@@ -1,0 +1,17 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# Yarn
+.yarn
+yarn.lock
+
+# Npm
+package-lock.json
+
+# testing
+/coverage
+
+# production
+/dist/css

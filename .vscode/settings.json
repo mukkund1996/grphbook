@@ -6,5 +6,8 @@
     "watchFile": "dynamicPriorityPolling"
   },
   "javascript.suggest.includeAutomaticOptionalChainCompletions": false,
-  "debug.saveBeforeStart": "none"
+  "debug.javascript.codelens.npmScripts": "never",
+  "debug.saveBeforeStart": "none",
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000
 }
