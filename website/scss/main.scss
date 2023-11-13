@@ -58,11 +58,11 @@ img {
     color: #000;
     text-transform: uppercase;
     border: 3px transparent solid;
+    border-radius: $btn-border-radius;
     padding: 0.5rem;
-    transition: border-color 0.5s, background-color 0.5s;
+    transition: background-color 0.5s;
 
     &:hover {
-      border-color: $dark-color;
       background-color: $medium-color;
     }
 
