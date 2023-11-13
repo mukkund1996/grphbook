@@ -1,8 +1,16 @@
-.container {
+%container-shared {
   max-width: $website-width;
   padding: 0 1.5rem;
   margin: auto;
   overflow: hidden;
+}
+
+.container {
+  &-center {
+    @extend %container-shared;
+    padding: 0;
+    max-width: fit-content;
+  }
 }
 
 // Buttons
