@@ -20,7 +20,7 @@
     @extend %container-shared;
     display: flex;
     overflow: auto;
-    max-width: 60%;
+    max-width: 80%;
     height: 45vh;
   }
   &-long {
@@ -40,7 +40,6 @@
   padding: 2rem;
 
   img {
-    // height: 450px;
     width: 650px;
     border-radius: $global-border-radius;
     box-shadow: $div-shadow-params;
@@ -55,6 +54,17 @@
   color: #333;
 
   h1,
+  h2 {
+    width: 80%;
+    border: none;
+    background-color: $light-color;
+    color: #333;
+    margin: 4% 0;
+    padding: 2%;
+    border-radius: $global-border-radius;
+  }
+
+  h1,
   h2,
   h3 {
     text-align: center;
@@ -62,27 +72,54 @@
   }
   p {
     text-align: center;
+    margin: 4% 0;
   }
 }
 
 .column {
   @extend %column-base;
-  &-text {
+
+  &-md {
     @extend %column-base;
     p,
     span {
       text-align: left;
     }
+
     h1,
     h2,
     h3 {
-      margin-bottom: 5px;
+      margin: 3% 0;
+    }
+
+    h2,
+    h3 {
+      border-bottom: 3px solid $medium-color;
     }
 
     pre {
       background-color: $light-color;
+      margin: 3% 0;
       padding: 3%;
       border-radius: $global-border-radius;
+      width: 100%;
+    }
+
+    a {
+      h1,
+      h2,
+      h3 {
+        color: #333;
+      }
+      i {
+        color: #3333337a;
+        transition: color $animation-duration;
+      }
+      &:hover {
+        i {
+          color: $medium-color;
+        }
+      }
     }
   }
 }
