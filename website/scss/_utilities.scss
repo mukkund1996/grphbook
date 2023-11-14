@@ -1,5 +1,12 @@
-// Container classes
+// Helper mixins
+%column-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
+// Container classes
 %container-shared {
   margin: auto;
 }
@@ -13,7 +20,7 @@
     @extend %container-shared;
     display: flex;
     overflow: auto;
-    max-width: $website-width;
+    max-width: 60%;
     height: 45vh;
   }
 }
@@ -27,30 +34,26 @@
   padding: 2rem;
 
   img {
-    height: 400px;
-    width: 400px;
+    // height: 450px;
+    width: 650px;
     border-radius: $global-border-radius;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    box-shadow: $div-shadow-params;
   }
 }
 
 .column {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @extend %column-flex;
   margin: 2rem;
   padding: 3rem;
   border-radius: $global-border-radius;
-  color: #fff;
-  background-color: $main-color;
+  color: #333;
 
   h2 {
-    text-align: start;
+    text-align: center;
     margin-bottom: 3px;
   }
   p {
-    text-align: justify;
+    text-align: center;
   }
 }
 
@@ -58,7 +61,7 @@
 %btn-shared {
   display: inline-block;
   padding: 0.8rem 2rem;
-  transition: all 0.5s;
+  transition: all $animation-duration;
   border: none;
   cursor: pointer;
   border-radius: $global-border-radius;
@@ -67,8 +70,12 @@
 .btn {
   &-main {
     @extend %btn-shared;
-    color: #333;
+    color: #fff;
     background-color: $main-color;
+    &:hover {
+      color: #fff;
+      background-color: $medium-color;
+    }
   }
   &-light {
     @extend %btn-shared;
@@ -80,13 +87,6 @@
     color: $light-color;
     background-color: $dark-color;
   }
-}
-
-button[class^="btn-"]:hover,
-a[class^="btn-"]:hover,
-input[class^="btn-"]:hover {
-  color: $light-color;
-  background-color: $main-color;
 }
 
 .lead {

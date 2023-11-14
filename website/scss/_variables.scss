@@ -5,7 +5,15 @@ $light-color: #f4f4f7;
 $dark-color: #01172f;
 $medium-color: #e58f65;
 $bg-image: url("../img/startup_page.gif");
+
+// Shapes
 $global-border-radius: 5px;
+
+// Animations
+$animation-duration: 0.3s;
+
+// Shadows
+$div-shadow-params: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
 // Nav Bar
 $nav-bg: #f4f4f78c;

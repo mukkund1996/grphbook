@@ -57,13 +57,13 @@ img {
 
   a {
     text-decoration: none;
-    color: #000;
+    color: #fff;
     text-transform: uppercase;
     border: 3px none $dark-color;
     background-color: $main-color;
     border-radius: $global-border-radius;
     padding: 0.5rem 0.8rem;
-    transition: background-color 0.5s;
+    transition: background-color $animation-duration;
 
     &:hover {
       background-color: $medium-color;
@@ -81,11 +81,13 @@ img {
     background: $bg-image no-repeat center right / cover;
     height: 70vh;
     color: #000;
+
     // Header Content
     .header-content {
+      @extend %column-flex;
+      padding-top: 14%;
+      padding-right: 25%;
       text-align: center;
-      padding-top: 25vh;
-      padding-right: 45vw;
 
       h1 {
         font-size: 3rem;
