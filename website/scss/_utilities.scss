@@ -1,15 +1,15 @@
 %container-shared {
-  max-width: $website-width;
-  padding: 0 1.5rem;
+  // max-width: $website-width;
   margin: auto;
   overflow: hidden;
 }
 
 .container {
-  &-center {
+  &-showcase {
     @extend %container-shared;
-    padding: 0;
-    max-width: fit-content;
+    width: 100vw;
+    // max-width: fit-content;
+    // padding: 1.5rem 1.5rem;
   }
 }
 

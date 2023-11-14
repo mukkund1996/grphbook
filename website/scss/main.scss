@@ -13,7 +13,7 @@ body {
 
 a {
   text-decoration: none;
-  color: $dark-color;
+  color: #fff;
 }
 
 ul {
@@ -36,16 +36,16 @@ img {
   color: $main-color;
   letter-spacing: -0.15rem;
   font-weight: 700;
-  font-size: 48px;
+  font-size: 40px;
 }
 
 // Main Nav
 #main-nav {
   display: flex;
-  justify-content: space-between;
-  padding: 1rem 0;
+  justify-content: space-around;
+  padding: 0 1rem;
   width: 100%;
-  background-color: #fff;
+  backdrop-filter: blur(2px);
 
   ul {
     display: flex;
@@ -59,9 +59,10 @@ img {
     text-decoration: none;
     color: #000;
     text-transform: uppercase;
-    border: 3px transparent solid;
+    border: 3px none $dark-color;
+    background-color: $main-color;
     border-radius: $btn-border-radius;
-    padding: 0.5rem;
+    padding: 0.5rem 0.8rem;
     transition: background-color 0.5s;
 
     &:hover {
@@ -83,8 +84,8 @@ img {
     // Header Content
     .header-content {
       text-align: center;
-      padding-top: 20%;
-      padding-right: 30vw;
+      padding-top: 25vh;
+      padding-right: 45vw;
 
       h1 {
         font-size: 3rem;
