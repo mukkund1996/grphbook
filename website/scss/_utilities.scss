@@ -1,15 +1,35 @@
+// Container classes
+
 %container-shared {
-  // max-width: $website-width;
   margin: auto;
-  overflow: hidden;
 }
 
 .container {
   &-showcase {
     @extend %container-shared;
     width: 100vw;
-    // max-width: fit-content;
-    // padding: 1.5rem 1.5rem;
+  }
+  &-short {
+    @extend %container-shared;
+    display: flex;
+    overflow: auto;
+    max-width: $website-width;
+    height: 50vh;
+    border: 2px solid #333;
+  }
+}
+
+// Organisation classes
+.column {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 2rem;
+
+  img {
+    height: 400px;
+    width: 400px;
   }
 }
 
