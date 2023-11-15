@@ -86,6 +86,10 @@ html {
     height: 70vh;
     color: #000;
 
+    @include phone {
+      background: no-repeat left $bg-image;
+    }
+
     // Header Content
     .header-content {
       @extend %column-flex;
@@ -96,6 +100,10 @@ html {
       h1 {
         font-size: 3rem;
         line-height: 1.2;
+      }
+
+      @include phone {
+        padding: 0;
       }
     }
   }
