@@ -1,5 +1,4 @@
 // Variables
-$website-width: 1280px;
 $main-color: #507dbc;
 $light-color: #f4f4f7;
 $dark-color: #01172f;
@@ -13,7 +12,24 @@ $global-border-radius: 5px;
 $animation-duration: 0.3s;
 
 // Shadows
-$div-shadow-params: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+$div-shadow-params: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
 // Nav Bar
 $nav-bg: #f4f4f78c;
+
+// Media query widths
+$desktop-width: 1280px;
+$tablet-width: 768px;
+$phone-width: 480px;
+
+@mixin phone {
+  @media screen and (max-width: #{$phone-width}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: #{$tablet-width}) and (min-width: #{$phone-width + 1px}) {
+    @content;
+  }
+}

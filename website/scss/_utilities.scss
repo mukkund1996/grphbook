@@ -23,12 +23,26 @@
     overflow: auto;
     max-width: 80%;
     height: 45vh;
+
+    @include phone {
+      height: auto;
+      overflow: unset;
+      max-width: 100%;
+    }
   }
   &-long {
     @extend %container-shared;
     display: flex;
     overflow: auto;
     max-width: 40%;
+
+    @include phone {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      max-width: 100%;
+    }
   }
 }
 
@@ -44,6 +58,10 @@
     width: 650px;
     border-radius: $global-border-radius;
     box-shadow: $div-shadow-params;
+  }
+
+  @include phone {
+    flex-direction: column;
   }
 }
 
@@ -61,7 +79,6 @@
     color: $main-color;
     margin: 4% 0;
     padding: 1%;
-    border-radius: $global-border-radius;
   }
 
   h1,
@@ -101,7 +118,7 @@
     }
 
     a {
-      border-bottom: 3px solid #3333337a;
+      border-bottom: 3px solid #33333300;
       transition: border-color $animation-duration;
       h1,
       h2,
@@ -118,6 +135,9 @@
         }
         border-bottom: 3px solid $medium-color;
       }
+    }
+    @include phone {
+      max-width: 80%;
     }
   }
 }

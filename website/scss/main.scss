@@ -106,7 +106,10 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #f4f4f4;
+  background: $main-color;
+  color: #fff;
+  border-bottom-left-radius: $global-border-radius;
+  border-bottom-right-radius: $global-border-radius;
 }
 
 // Logo
