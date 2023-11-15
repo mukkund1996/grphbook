@@ -89,12 +89,7 @@
     h1,
     h2,
     h3 {
-      margin: 3% 0;
-    }
-
-    h2,
-    h3 {
-      border-bottom: 3px solid $medium-color;
+      margin: 2% 0;
     }
 
     pre {
@@ -106,6 +101,8 @@
     }
 
     a {
+      border-bottom: 3px solid #3333337a;
+      transition: border-color $animation-duration;
       h1,
       h2,
       h3 {
@@ -119,6 +116,7 @@
         i {
           color: $medium-color;
         }
+        border-bottom: 3px solid $medium-color;
       }
     }
   }

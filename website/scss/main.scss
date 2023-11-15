@@ -1,6 +1,8 @@
 @import "variables";
 @import "utilities";
 
+// Root settings
+
 * {
   margin: 0;
   padding: 0;
@@ -31,13 +33,9 @@ img {
   width: 100%;
 }
 
-// Logo
-#logo {
-  font-family: "Comfortaa", sans-serif;
-  color: $main-color;
-  letter-spacing: -0.15rem;
-  font-weight: 700;
-  font-size: 40px;
+// Scroll behaviour
+html {
+  scroll-behavior: smooth;
 }
 
 // Main Nav
@@ -81,6 +79,15 @@ img {
   }
 }
 
+// Logo
+#logo {
+  font-family: "Comfortaa", sans-serif;
+  color: $main-color;
+  letter-spacing: -0.15rem;
+  font-weight: 700;
+  font-size: 40px;
+}
+
 // Header
 #header {
   &-home {
@@ -101,4 +108,12 @@ img {
       }
     }
   }
+}
+
+// Footer
+#footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f4f4f4;
 }
