@@ -103,7 +103,10 @@ html {
       }
 
       @include phone {
-        padding: 0;
+        padding: 1%;
+        p {
+          font-size: 1.25rem;
+        }
       }
     }
   }

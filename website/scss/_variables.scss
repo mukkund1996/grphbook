@@ -19,17 +19,11 @@ $nav-bg: #f4f4f78c;
 
 // Media query widths
 $desktop-width: 1280px;
-$tablet-width: 768px;
+$tablet-width: 1024px;
 $phone-width: 480px;
 
 @mixin phone {
-  @media screen and (max-width: #{$phone-width}) {
-    @content;
-  }
-}
-
-@mixin tablet {
-  @media (max-width: #{$tablet-width}) and (min-width: #{$phone-width + 1px}) {
+  @media screen and (max-width: #{$tablet-width}) {
     @content;
   }
 }
