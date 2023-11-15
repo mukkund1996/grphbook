@@ -79,15 +79,6 @@ html {
   }
 }
 
-// Logo
-#logo {
-  font-family: "Comfortaa", sans-serif;
-  color: $main-color;
-  letter-spacing: -0.15rem;
-  font-weight: 700;
-  font-size: 40px;
-}
-
 // Header
 #header {
   &-home {
@@ -116,4 +107,24 @@ html {
   justify-content: center;
   align-items: center;
   background: #f4f4f4;
+}
+
+// Logo
+#logo {
+  background: transparent !important;
+  span {
+    font-family: "Comfortaa", sans-serif;
+    color: $main-color;
+    letter-spacing: -0.15rem;
+    font-weight: 700;
+    font-size: 40px;
+    text-transform: none;
+    transition: color $animation-duration;
+  }
+  &:hover {
+    span {
+      color: $medium-color;
+    }
+    background: none;
+  }
 }
