@@ -1,5 +1,4 @@
 import { MouseEventHandler, useContext, useState } from "react";
-import { ApiContext } from "../context/ApiContext";
 import { generateDescription } from "../../chat/generation";
 import { Button, Spinner } from "@primer/react";
 
@@ -8,13 +7,14 @@ import { InfoIcon } from "@primer/octicons-react";
 import { baseButtonStyles } from "../Styles/common.styles";
 import { Edge, useReactFlow, Node } from "reactflow";
 import { DescriptionNodeType } from "../DescriptionNode/DescriptionNode";
-import { getHighlightedNode } from "../utils/node";
 import {
   CELL_PREFIX,
   generateEdgeId,
   generateNodeId,
 } from "../../utils/generateId";
 import { NODE_X_BUFFER, NODE_Y_BUFFER } from "../../config/config";
+import { getHighlightedNode } from "../../utils/node";
+import { ApiContext } from "../../context/ApiContext";
 
 export const GenerateDescriptionButton: React.FC = () => {
   const flowInstance = useReactFlow();

@@ -4,7 +4,7 @@ import {
   useContext,
   useState,
 } from "react";
-import { ApiContext } from "../components/context/ApiContext";
+import { ApiContext } from "../context/ApiContext";
 
 export const useApi = () => {
   const { apiKey, setApiKey } = useContext(ApiContext);

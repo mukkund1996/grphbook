@@ -7,9 +7,9 @@ import {
 } from "../../../notebook/exportNotebook";
 import { DownloadOptionsProps } from "./DownloadDialog";
 import { GrphBookNode } from "../../../notebook/NoteBook";
-import { downloadTxtFile } from "../../utils/download";
 import { generateLabel, generateRouteKey } from "./DownloadDialog.utils";
 import { containsGenerateNodes } from "../../GenerateNode/GenerateNode.hooks";
+import { downloadTxtFile } from "../../../utils/download";
 
 type KeyRouteMapType = { [key: string]: Array<GrphBookNode> };
 type KeyRouteTuple = [key: string, route: Array<GrphBookNode>];

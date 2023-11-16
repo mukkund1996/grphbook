@@ -10,8 +10,8 @@ import { GptSingleResponse, generateCode } from "../../chat/generation";
 import { CodingNodeType } from "../CodingNode/CodingNode";
 import { DescriptionNodeType } from "../DescriptionNode/DescriptionNode";
 import { GrphBookNode } from "../../notebook/NoteBook";
-import { ApiContext } from "../context/ApiContext";
 import { NODE_Y_BUFFER } from "../../config/config";
+import { ApiContext } from "../../context/ApiContext";
 
 export const useGenerateControls = (data: GenerateNodeData) => {
   const flowInstance = useReactFlow();
