@@ -1,11 +1,15 @@
-import { NodeRoutes } from "../../../notebook/exportNotebook";
+import { NodeRoutes } from "../../notebook/exportNotebook";
 import { ActionList, Button, Dialog } from "@primer/react";
 import { DownloadIcon } from "@primer/octicons-react";
 import { useDownloadHandles } from "./DownloadDialog.hooks";
 
 import styles from "./DownloadDialog.module.css";
-import { baseButtonStyles, dialogStyles } from "../../Styles/common.styles";
-import commonStyles from "../../Styles/common.module.css";
+import {
+  baseButtonStyles,
+  dialogHeaderStyles,
+  dialogStyles,
+} from "../Styles/common.styles";
+import commonStyles from "../Styles/common.module.css";
 
 export type DownloadOptionsProps = {
   open: boolean;
@@ -32,7 +36,9 @@ const DownloadDialog = (props: DownloadOptionsProps) => {
       onDismiss={handleClose}
       aria-labelledby="header-id"
     >
-      <Dialog.Header id="header-id">Select possible routes</Dialog.Header>
+      <Dialog.Header sx={dialogHeaderStyles} id="header-id">
+        Select possible routes
+      </Dialog.Header>
       <ActionList selectionVariant="single">
         {Object.keys(keyRouteMap).map(key => {
           const route = keyRouteMap[key];

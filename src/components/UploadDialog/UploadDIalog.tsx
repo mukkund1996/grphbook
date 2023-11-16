@@ -2,16 +2,17 @@ import { ActionList, Button, Dialog, Textarea } from "@primer/react";
 
 import { UploadIcon } from "@primer/octicons-react";
 import { useState } from "react";
-import { NoteBook } from "../../../notebook/NoteBook";
-import { importNotebook } from "../../../notebook/importNotebook";
+import { NoteBook } from "../../notebook/NoteBook";
+import { importNotebook } from "../../notebook/importNotebook";
 import { useReactFlow } from "reactflow";
 
 import {
   baseButtonStyles,
+  dialogHeaderStyles,
   dialogStyles,
   textStyles,
-} from "../../Styles/common.styles";
-import commonStyles from "../../Styles/common.module.css";
+} from "../Styles/common.styles";
+import commonStyles from "../Styles/common.module.css";
 import { errorBorder } from "./UploadDialog.styles";
 
 export type UploadOptionsProps = {
@@ -67,7 +68,9 @@ export const UploadDialog = (props: UploadOptionsProps) => {
       onDismiss={handleClose}
       aria-labelledby="header-id"
     >
-      <Dialog.Header id="header-id">Import notebook</Dialog.Header>
+      <Dialog.Header sx={dialogHeaderStyles} id="header-id">
+        Import notebook
+      </Dialog.Header>
       <ActionList selectionVariant="single">
         <Textarea
           placeholder="Enter notebook JSON"

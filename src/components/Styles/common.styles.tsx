@@ -32,3 +32,8 @@ export const textStyles: CSSProperties = {
 export const inputStyles: CSSProperties = {
   minHeight: "45px",
 };
+
+export const dialogHeaderStyles: CSSProperties = {
+  border: "none",
+  borderRadius: 0,
+};

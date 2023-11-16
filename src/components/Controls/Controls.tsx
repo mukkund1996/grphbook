@@ -7,10 +7,10 @@ import {
   SyncIcon,
   UploadIcon,
 } from "@primer/octicons-react";
-import DownloadDialog from "./DownloadDialog/DownloadDialog";
-import { useDownloadRoutes } from "./DownloadDialog/DownloadDialog.hooks";
-import { useUploadControls } from "./UploadDialog/UploadDialog.hooks";
-import { UploadDialog } from "./UploadDialog/UploadDIalog";
+import DownloadDialog from "../DownloadDialog/DownloadDialog";
+import { useDownloadRoutes } from "../DownloadDialog/DownloadDialog.hooks";
+import { useUploadControls } from "../UploadDialog/UploadDialog.hooks";
+import { UploadDialog } from "../UploadDialog/UploadDIalog";
 import { TextInput } from "@primer/react";
 
 import controlStyles from "./Controls.module.css";

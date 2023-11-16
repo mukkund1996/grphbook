@@ -39,16 +39,7 @@ const Flow: React.FC = () => {
   );
   const onEdgesChange: OnEdgesChange = useCallback(
     changes => {
-      const validChanges = [
-        ...changes.filter(change => {
-          // Do not allow for manual deletion of edges
-          // if (change.type === "remove") {
-          //   return false;
-          // }
-          return true;
-        }),
-      ];
-      setEdges(eds => applyEdgeChanges(validChanges, eds));
+      setEdges(eds => applyEdgeChanges(changes, eds));
     },
     [setEdges],
   );
