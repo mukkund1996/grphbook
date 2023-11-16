@@ -12,8 +12,9 @@ export const borderStyles: CSSProperties = {
 
 export const dialogStyles: CSSProperties = {
   position: "fixed",
+  top: 0,
   left: 0,
-  margin: "35vh 18%",
+  margin: "35vh 350px",
   border: "3px solid var(--secondary-color)",
   borderRadius: "5px",
   background: "#fff",
