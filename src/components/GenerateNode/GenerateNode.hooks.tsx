@@ -126,14 +126,6 @@ export const useGenerateControls = (data: GenerateNodeData) => {
     setIncludeMd(!includeMd);
   };
 
-  const deleteGenerateNode = () => {
-    flowInstance.deleteElements({ nodes: getCurrentNode() });
-  };
-
-  const handleDelete: MouseEventHandler = _event => {
-    deleteGenerateNode();
-  };
-
   return {
     input,
     setInput,
@@ -142,7 +134,6 @@ export const useGenerateControls = (data: GenerateNodeData) => {
     loading,
     handleToggle,
     handleGenerate,
-    handleDelete,
   };
 };
 

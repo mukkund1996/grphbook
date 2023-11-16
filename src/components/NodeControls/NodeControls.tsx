@@ -5,18 +5,24 @@ import styles from "./NodeControls.module.css";
 import commonStyles from "../Styles/common.module.css";
 import { useControls } from "../../hooks/useControls";
 import { baseButtonStyles } from "../Styles/common.styles";
+import { FC } from "react";
 
 type NodeControlProps = {
-  auxillaryButton?: React.FC;
+  leadingButton?: FC;
+  trailingButton?: FC;
   Icon?: JSX.Element | JSX.Element[];
 };
 
-export const NodeControls: React.FC<NodeControlProps> = props => {
-  const { auxillaryButton: AuxillaryButton, Icon } = props;
+export const NodeControls: FC<NodeControlProps> = props => {
+  const {
+    leadingButton: LeadingButton,
+    trailingButton: TrailingButton,
+    Icon,
+  } = props;
   const { addCodingNode, addDescriptionNode, addGeneratorNode } = useControls();
   return (
     <div className={styles["control"]}>
-      {AuxillaryButton ? <AuxillaryButton /> : null}
+      {LeadingButton ? <LeadingButton /> : null}
       <Button
         sx={baseButtonStyles}
         className={commonStyles["button"]}
@@ -38,6 +44,7 @@ export const NodeControls: React.FC<NodeControlProps> = props => {
       >
         <ZapIcon size={16} />
       </Button>
+      {TrailingButton ? <TrailingButton /> : null}
       {Icon}
     </div>
   );

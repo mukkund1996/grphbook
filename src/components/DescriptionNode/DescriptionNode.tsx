@@ -12,6 +12,7 @@ import commonStyles from "../Styles/common.module.css";
 import styles from "./DescriptionNode.module.css";
 import { PaintbrushIcon, PencilIcon } from "@primer/octicons-react";
 import { Icon } from "@iconify/react";
+import { DeleteButton } from "../Buttons/DeleteButton";
 
 export type DescriptionNodeData = {
   content: string;
@@ -57,7 +58,8 @@ const DescriptionNode = ({ data }: NodeProps<DescriptionNodeData>) => {
         />
       ) : null}
       <NodeControls
-        auxillaryButton={MdButton}
+        leadingButton={MdButton}
+        trailingButton={DeleteButton}
         Icon={
           <Icon
             icon="teenyicons:markdown-solid"

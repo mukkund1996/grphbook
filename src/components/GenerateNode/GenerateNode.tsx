@@ -1,14 +1,13 @@
 import { Handle, Node, NodeProps, Position } from "reactflow";
 
 import { GeneratorInput } from "../GeneratorInput/GeneratorInput";
-import { Button, Text, ToggleSwitch } from "@primer/react";
-import { baseButtonStyles } from "../Styles/common.styles";
-import { XIcon } from "@primer/octicons-react";
+import { Text, ToggleSwitch } from "@primer/react";
+import { useGenerateControls } from "./GenerateNode.hooks";
 
 import commonStyles from "../Styles/common.module.css";
 import controlStyles from "../NodeControls/NodeControls.module.css";
 import styles from "./GenerateNode.module.css";
-import { useGenerateControls } from "./GenerateNode.hooks";
+import { DeleteButton } from "../Buttons/DeleteButton";
 
 export type GenerateNodeData = {
   content: string;
@@ -25,7 +24,6 @@ export const GenerateNode = ({ data }: NodeProps<GenerateNodeData>) => {
     loading,
     handleToggle,
     handleGenerate,
-    handleDelete,
   } = useGenerateControls(data);
 
   return (
@@ -48,14 +46,7 @@ export const GenerateNode = ({ data }: NodeProps<GenerateNodeData>) => {
             aria-labelledby="toggleDescription"
           />
         </div>
-        <Button
-          sx={baseButtonStyles}
-          onClick={handleDelete}
-          leadingIcon={XIcon}
-          className={commonStyles["button"]}
-        >
-          Delete
-        </Button>
+        <DeleteButton />
       </div>
       {errorMsg ? (
         <p className={commonStyles["error-state"]}>{errorMsg}</p>
