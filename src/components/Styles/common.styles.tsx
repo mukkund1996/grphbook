@@ -14,7 +14,7 @@ export const dialogStyles: CSSProperties = {
   position: "fixed",
   top: 0,
   left: 0,
-  margin: "35vh 350px",
+  margin: "35vh 12%",
   border: "3px solid var(--secondary-color)",
   borderRadius: "5px",
   background: "#fff",
