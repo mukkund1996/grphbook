@@ -4,11 +4,12 @@
   "description": "Landing page for GrphBook",
   "main": "index.js",
   "scripts": {
+    "sass-prod": "node-sass scss/ -o dist/css/",
     "sass": "node-sass -w scss/ -o dist/css/ --recursive"
   },
   "author": "Mukkund Sunjii",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "node-sass": "^9.0.0"
   }
 }
