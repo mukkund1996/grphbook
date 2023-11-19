@@ -1,46 +1,41 @@
-# Getting Started with Create React App
+## Overview
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+GprhBook is an interactive python notebook client that allows to visualize notebooks as a 2D workflow.
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+```bash
+npm install grphbook
+```
 
-### `npm start`
+## How to contribute
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Thank you for your interest in contributing to Grphbook! We welcome contributions from the community to help make this project even better. Whether you want to report a bug, suggest a new feature, or contribute code, your help is greatly appreciated.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Reporting Issues
 
-### `npm test`
+If you come across a bug or have a feature request, please open an issue on the GitHub issue tracker. When reporting issues, be sure to provide detailed information about the problem, including steps to reproduce it.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Feature Requests
 
-### `npm run build`
+If you have an idea for a new feature, we'd love to hear about it! Please open an issue on the GitHub issue tracker and use the "Feature Request" label.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Contributing Code
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Fork and Clone the Repository
+Fork the Grphbook repository on GitHub.
+Clone your fork to your local machine.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+# Copy code
+git clone https://github.com/your-username/grphbook.git
+```
 
-### `npm run eject`
+### Install Dependencies
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Make sure you have Node.js and npm installed on your machine. Install project dependencies using:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+# Copy code
+npm install
+```
