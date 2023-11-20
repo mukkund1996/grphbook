@@ -1,7 +1,10 @@
 {
   "name": "grphbook",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "private": false,
+  "repository": {
+    "url": "https://github.com/mukkund1996/grphbook"
+  },
   "dependencies": {
     "@iconify/react": "^4.1.1",
     "@monaco-editor/react": "^4.6.0",
