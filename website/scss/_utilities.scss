@@ -122,6 +122,9 @@
     p,
     span {
       text-align: left;
+      a {
+        color: $medium-color;
+      }
     }
 
     h1,
@@ -144,7 +147,7 @@
       h1,
       h2,
       h3 {
-        color: #333;
+        color: $main-color;
       }
       i {
         color: #3333337a;
@@ -157,6 +160,11 @@
         border-bottom: 3px solid $medium-color;
       }
     }
+
+    img {
+      width: 70%;
+    }
+
     @include phone {
       max-width: 80%;
     }
