@@ -30,8 +30,9 @@
     width: 7rem;
     left: 20px;
     top: 20px;
-    border: 3px solid var(--secondary-color);
-    border-radius: 10px;
+    border: var(--global-border-thickness) solid var(--secondary-color);
+    box-shadow: var(--div-shadow-params);
+    border-radius: var(--secondary-border-radius);
     background: #fff;
   }
 }

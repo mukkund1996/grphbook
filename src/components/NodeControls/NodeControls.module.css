@@ -8,7 +8,7 @@
 
 .button {
   background: var(--secondary-color);
-  border-radius: 5px;
+  border-radius: var(--global-border-radius);
   margin: 0 1%;
 }
 

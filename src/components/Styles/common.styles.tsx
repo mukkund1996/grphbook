@@ -5,16 +5,17 @@ export const baseButtonStyles: CSSProperties = {
 };
 
 const commonBorder: CSSProperties = {
-  borderRadius: "10px",
+  borderRadius: "var(--secondary-border-radius)",
   background: "#fff",
+  boxShadow: "var(--div-shadow-params)",
 };
 export const borderStyles: CSSProperties = {
-  border: "3px solid var(--secondary-color)",
+  border: "var(--global-border-thickness) solid var(--secondary-color)",
   ...commonBorder,
 };
 
 export const successBorder: CSSProperties = {
-  border: "3px solid var(--success-state)",
+  border: "var(--global-border-thickness) solid var(--success-state)",
   ...commonBorder,
 };
 
@@ -22,9 +23,10 @@ export const dialogStyles: CSSProperties = {
   position: "fixed",
   top: 0,
   left: 0,
-  margin: "35vh 12%",
-  border: "3px solid var(--secondary-color)",
-  borderRadius: "5px",
+  margin: "31vh 17%",
+  border: "var(--global-border-thickness) solid var(--secondary-color)",
+  boxShadow: "var(--div-shadow-params)",
+  borderRadius: "var(--primary-border-radius)",
   background: "#fff",
   padding: "0px 15px",
   width: "20em",
@@ -34,7 +36,7 @@ export const textStyles: CSSProperties = {
   height: "100px",
   width: "90%",
   border: "solid var(--secondary-color)",
-  borderRadius: "5px",
+  borderRadius: "var(--primary-border-radius)",
   marginBottom: "15px",
 };
 

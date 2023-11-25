@@ -1,8 +1,8 @@
-import {CSSProperties} from "react";
+import { CSSProperties } from "react";
 
 export const controlDiv: CSSProperties = {
   bottom: "50%",
-  borderRadius: "5%",
+  borderRadius: "var(--secondary-border-radius)",
   left: "1%",
   display: "flex",
   flexDirection: "column",

@@ -32,7 +32,7 @@
   margin-top: 5px;
   padding: 10px;
   background: var(--secondary-color);
-  border-radius: 5px;
+  border-radius: var(--global-border-radius);
 }
 
 .prompt-selection:hover span {

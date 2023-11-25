@@ -1,17 +1,19 @@
 .border {
-  border: 3px solid var(--secondary-color);
-  border-radius: 10px;
+  border: var(--global-border-thickness) solid var(--secondary-color);
+  border-radius: var(--secondary-border-radius);
   background: #fff;
+  box-shadow: var(--div-shadow-params);
 }
 
 .button {
   background: var(--secondary-color);
-  border-radius: 5px;
+  border-radius: var(--global-border-radius);
   margin: 0 1%;
 }
 
 .button:hover {
   background-color: var(--highlight-color);
+  border-radius: var(--global-border-radius);
   color: var(--highlight-text-color);
 }
 

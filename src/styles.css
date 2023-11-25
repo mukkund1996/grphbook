@@ -11,6 +11,10 @@ body,
   --success-state: #2cc681;
   --global-animation-duration: 1s;
   --global-animation-style: ease-in-out;
+  --div-shadow-params: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  --global-border-thickness: 1px;
+  --global-border-radius: 5px;
+  --secondary-border-radius: 5px;
 }
 
 .app {

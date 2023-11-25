@@ -6,7 +6,7 @@
   border: 3px var(--secondary-color) solid;
   background-color: var(--secondary-color);
   padding: 0px 5px;
-  border-radius: 5px;
+  border-radius: var(--global-border-radius);
 }
 
 .toggle button {

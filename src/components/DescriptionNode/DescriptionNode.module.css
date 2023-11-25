@@ -2,7 +2,7 @@
   height: auto;
   width: 90%;
   border: solid var(--secondary-color);
-  border-radius: 10px;
+  border-radius: var(--secondary-border-radius);
   text-align: left;
   margin-bottom: 15px;
 }
