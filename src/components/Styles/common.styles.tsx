@@ -40,6 +40,7 @@ export const textStyles: CSSProperties = {
 
 export const inputStyles: CSSProperties = {
   minHeight: "45px",
+  transition: "border-color 0.5s var(--global-animation-style)",
 };
 
 export const dialogHeaderStyles: CSSProperties = {

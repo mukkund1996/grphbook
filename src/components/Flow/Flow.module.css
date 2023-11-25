@@ -21,7 +21,7 @@
   letter-spacing: -0.15rem;
   font-size: 72px;
   animation: font-transition 2s ease-in-out 1s 1 forwards normal;
-  transition: all 1s ease-in-out;
+  transition: all var(--global-animation-duration) var(--global-animation-style);
 }
 
 @keyframes div-transition {

@@ -9,6 +9,8 @@ body,
   --secondary-color: #f4f4f7;
   --error-state: #dc143c;
   --success-state: #2cc681;
+  --global-animation-duration: 1s;
+  --global-animation-style: ease-in-out;
 }
 
 .app {
