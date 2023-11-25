@@ -14,6 +14,10 @@
   animation: div-transition 2s ease-in-out 1s 1 forwards normal;
 }
 
+.icon a {
+  text-decoration: none;
+}
+
 .icon span::before {
   content: "grphbook";
   font-family: "Comfortaa", sans-serif;

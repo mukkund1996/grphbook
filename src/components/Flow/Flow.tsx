@@ -22,6 +22,7 @@ import GenerateNode from "../GenerateNode/GenerateNode";
 
 import "reactflow/dist/style.css";
 import styles from "./Flow.module.css";
+import { ICON_HREF } from "../../config/config";
 
 const nodeTypes: NodeTypes = {
   codingCell: CodingNode,
@@ -76,7 +77,9 @@ const Flow: React.FC = () => {
         variant={BackgroundVariant.Lines}
       />
       <div className={styles["icon"]}>
-        <span></span>
+        <a href={ICON_HREF}>
+          <span></span>
+        </a>
       </div>
     </ReactFlow>
   );
