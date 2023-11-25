@@ -8,6 +8,7 @@ body,
   --highlight-text-color: #fff;
   --secondary-color: #f4f4f7;
   --error-state: #dc143c;
+  --success-state: #2cc681;
 }
 
 .app {

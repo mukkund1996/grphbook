@@ -4,10 +4,18 @@ export const baseButtonStyles: CSSProperties = {
   border: "none",
 };
 
-export const borderStyles: CSSProperties = {
-  border: "3px solid var(--secondary-color)",
+const commonBorder: CSSProperties = {
   borderRadius: "10px",
   background: "#fff",
+};
+export const borderStyles: CSSProperties = {
+  border: "3px solid var(--secondary-color)",
+  ...commonBorder,
+};
+
+export const successBorder: CSSProperties = {
+  border: "3px solid var(--success-state)",
+  ...commonBorder,
 };
 
 export const dialogStyles: CSSProperties = {

@@ -1,6 +1,7 @@
 import { ControlButton, Controls } from "reactflow";
 import { controlDiv, controlButtons } from "./Controls.styles";
 import {
+  CheckCircleFillIcon,
   DownloadIcon,
   KeyIcon,
   PlayIcon,
@@ -15,7 +16,11 @@ import { TextInput } from "@primer/react";
 
 import controlStyles from "./Controls.module.css";
 import commonStyles from "../Styles/common.module.css";
-import { borderStyles, inputStyles } from "../Styles/common.styles";
+import {
+  borderStyles,
+  inputStyles,
+  successBorder,
+} from "../Styles/common.styles";
 import { useApi } from "../../hooks/useApi";
 import { StartupPrompt } from "./StartupPrompt/StartupPrompt";
 import { useStartupPrompt } from "./StartupPrompt/StartupPrompt.hooks";
@@ -43,6 +48,7 @@ const CustomControl: React.FC = () => {
     localInput: userApiInput,
     apiInputHandler,
     apiSubmitHandler,
+    hasApi,
   } = useApi();
 
   const {
@@ -101,19 +107,23 @@ const CustomControl: React.FC = () => {
           />
           <TextInput
             className={controlStyles["api-input"]}
-            sx={{ ...borderStyles, ...inputStyles }}
+            sx={
+              hasApi
+                ? { ...successBorder, ...inputStyles }
+                : { ...borderStyles, ...inputStyles }
+            }
             type="password"
             leadingVisual={KeyIcon}
             aria-label={"GPTAI API Key"}
             name="api-key-input"
-            placeholder="Enter your API Key"
+            placeholder={hasApi ? "API key added" : "Enter your API Key"}
             value={userApiInput}
             onChange={apiInputHandler}
             trailingAction={
               <TextInput.Action
                 id="input-api-btn"
                 onClick={apiSubmitHandler}
-                icon={PlayIcon}
+                icon={hasApi ? CheckCircleFillIcon : PlayIcon}
                 aria-label="Input API Key"
                 className={`${commonStyles["button"]}`}
               />

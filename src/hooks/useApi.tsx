@@ -9,8 +9,10 @@ import { ApiContext } from "../context/ApiContext";
 export const useApi = () => {
   const { apiKey, setApiKey } = useContext(ApiContext);
   const [localInput, setLocalInput] = useState<string>("");
+  const [hasApi, setHasApi] = useState<boolean>(!!apiKey);
 
   const apiInputHandler: ChangeEventHandler<HTMLInputElement> = event => {
+    setHasApi(false);
     const value = event.target.value;
     setLocalInput(value);
   };
@@ -18,6 +20,7 @@ export const useApi = () => {
   const apiSubmitHandler: MouseEventHandler<HTMLButtonElement> = _event => {
     if (localInput) {
       setApiKey(localInput);
+      setHasApi(true);
     }
   };
 
@@ -28,5 +31,6 @@ export const useApi = () => {
     apiInputHandler,
     setApiKey,
     apiSubmitHandler,
+    hasApi,
   };
 };
