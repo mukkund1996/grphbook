@@ -22,7 +22,6 @@ export const generateSampleLayout = (): {
           "## You can add description",
           "### by clicking the edit button\n",
           "- Through simple Markdown format\n",
-          "- Just like this\n",
         ],
       },
     ],

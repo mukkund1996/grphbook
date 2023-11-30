@@ -26,7 +26,7 @@ export const dialogStyles: CSSProperties = {
   margin: "31vh 17%",
   border: "var(--global-border-thickness) solid var(--secondary-color)",
   boxShadow: "var(--div-shadow-params)",
-  borderRadius: "var(--primary-border-radius)",
+  borderRadius: "var(--global-border-radius)",
   background: "#fff",
   padding: "0px 15px",
   width: "20em",
@@ -36,7 +36,7 @@ export const textStyles: CSSProperties = {
   height: "100px",
   width: "90%",
   border: "solid var(--secondary-color)",
-  borderRadius: "var(--primary-border-radius)",
+  borderRadius: "var(--global-border-radius)",
   marginBottom: "15px",
 };
 
