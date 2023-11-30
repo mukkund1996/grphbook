@@ -5,6 +5,10 @@
   box-shadow: var(--div-shadow-params);
 }
 
+.error-border {
+  border: var(--global-border-thickness) solid var(--error-state);
+}
+
 .button {
   background: var(--secondary-color);
   border-radius: var(--global-border-radius);

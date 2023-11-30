@@ -17,7 +17,6 @@ export const useGenerateControls = (data: GenerateNodeData) => {
   const flowInstance = useReactFlow();
   const { apiKey } = useContext(ApiContext);
 
-  // TODO: Set default to true
   const [includeMd, setIncludeMd] = useState(false);
   const [input, setInput] = useState(data.content);
   const [loading, setLoading] = useState(false);
@@ -104,22 +103,26 @@ export const useGenerateControls = (data: GenerateNodeData) => {
 
   const handleGenerate: MouseEventHandler = _event => {
     setErrorMsg(null);
-    setLoading(true);
-    generateCode(input, includeMd, apiKey)
-      .then(response => {
-        if (response) {
-          createGeneratedNodes(response);
-        }
-        setLoading(false);
-      })
-      .catch(error => {
-        setLoading(false);
-        if (error.code === "invalid_api_key") {
-          setErrorMsg("Invalid API key.");
-        } else {
-          setErrorMsg("Cannot parse the response! Check prompt");
-        }
-      });
+    if (!apiKey || apiKey === "") {
+      setErrorMsg("GPT AI API key needed to use generative features!");
+    } else {
+      setLoading(true);
+      generateCode(input, includeMd, apiKey)
+        .then(response => {
+          if (response) {
+            createGeneratedNodes(response);
+          }
+          setLoading(false);
+        })
+        .catch(error => {
+          setLoading(false);
+          if (error.code === "invalid_api_key") {
+            setErrorMsg("Invalid API key.");
+          } else {
+            setErrorMsg("Cannot parse the response! Check prompt");
+          }
+        });
+    }
   };
 
   const handleToggle: MouseEventHandler = _event => {

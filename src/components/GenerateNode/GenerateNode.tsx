@@ -27,7 +27,11 @@ export const GenerateNode = ({ data }: NodeProps<GenerateNodeData>) => {
   } = useGenerateControls(data);
 
   return (
-    <div className={`${commonStyles["node"]} ${commonStyles["border"]}`}>
+    <div
+      className={`${commonStyles["node"]} ${commonStyles["border"]} ${
+        errorMsg ? commonStyles["error-border"] : ""
+      }`}
+    >
       <Handle type="target" id="a" position={Position.Top} />
       <GeneratorInput
         loading={loading}
