@@ -2,7 +2,8 @@
 
 GprhBook is an interactive python notebook client that allows to visualize notebooks as a 2D workflow.
 
-# Quick Start
+## Quick Start
+
 Head over to the [sandbox environment](https://grphbook.vercel.app/) to try out GrphBook.
 
 ## Start from Sample Layout
