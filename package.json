@@ -1,10 +1,24 @@
 {
   "name": "grphbook",
-  "version": "0.7.0",
+  "version": "0.7.1",
+  "description": "Interactive web-based Python notebooks.",
   "private": false,
   "repository": {
     "url": "https://github.com/mukkund1996/grphbook"
   },
+  "author": {
+    "name": "Mukkund Sunjii",
+    "email": "mukkundsunjii@gmail.com",
+    "url": "https://mukkund1996.github.io/"
+  },
+  "homepage": "https://mukkund1996.github.io/grphbook/",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "keywords": [
+    "python",
+    "notebook",
+    "react",
+    "data-science"
+  ],
   "dependencies": {
     "@iconify/react": "^4.1.1",
     "@monaco-editor/react": "^4.6.0",
