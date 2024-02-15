@@ -9,9 +9,6 @@
 .yarn
 yarn.lock
 
-# Npm
-package-lock.json
-
 # testing
 /coverage
 

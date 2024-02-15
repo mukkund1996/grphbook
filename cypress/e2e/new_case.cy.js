@@ -17,7 +17,7 @@ describe("grphbook landing page", () => {
       cy.contains(predefinedStart).click();
     });
 
-    it("displays 2 nodes", () => {
+    it("displays coding and description nodes", () => {
       cy.get("[data-testid=coding-node]").should("have.length", 1);
       cy.get("[data-testid=desc-node]").should("have.length", 1);
     });
