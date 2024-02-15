@@ -1,9 +1,10 @@
 describe("grphbook landing page", () => {
   const blankStart = "Start from blank";
   const predefinedStart = "Use a starting layout";
+  const url = "http://localhost:3000";
 
   beforeEach(() => {
-    cy.visit("http://localhost:3000");
+    cy.visit(url);
   });
 
   it("displays two entry points by default", () => {
