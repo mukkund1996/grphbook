@@ -39,7 +39,10 @@ const DescriptionNode = ({ data }: NodeProps<DescriptionNodeData>) => {
   );
 
   return (
-    <div className={`${commonStyles["node"]} ${commonStyles["border"]}`}>
+    <div
+      data-testid="desc-node"
+      className={`${commonStyles["node"]} ${commonStyles["border"]}`}
+    >
       <Handle type="target" id="a" position={Position.Top} />
       {visibility ? (
         <Textarea

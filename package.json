@@ -18,6 +18,12 @@
     "react",
     "data-science"
   ],
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "@babel/core": "^7.0.0-0",
     "@babel/plugin-syntax-flow": "^7.14.5",
@@ -46,11 +52,10 @@
     "uuidv4": "^5.0.1",
     "web-vitals": "^2.1.4"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "cypress": "^13.6.4",
+    "dotenv": "^16.3.1"
   },
   "eslintConfig": {
     "extends": [
@@ -80,9 +85,5 @@
     "printWidth": 80,
     "editorFormatOnSave": true,
     "arrowParens": "avoid"
-  },
-  "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "dotenv": "^16.3.1"
   }
 }

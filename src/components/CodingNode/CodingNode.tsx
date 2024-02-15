@@ -27,7 +27,10 @@ const CodingNode = ({ data }: NodeProps<CodingNodeData>) => {
   const { handleEditorChange, handleEditorDidMount } = useCodingNode(data);
 
   return (
-    <div className={`${commonStyles["node"]} ${commonStyles["border"]}`}>
+    <div
+      data-testid={"coding-node"}
+      className={`${commonStyles["node"]} ${commonStyles["border"]}`}
+    >
       <Handle type="target" id="a" position={Position.Top} />
       <Editor
         className={styles["code-editor"]}

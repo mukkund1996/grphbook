@@ -34,7 +34,8 @@ const DownloadDialog = (props: DownloadOptionsProps) => {
       returnFocusRef={anchorRef}
       isOpen={open}
       onDismiss={handleClose}
-      aria-labelledby="header-id"
+      aria-labelledby="download-header-id"
+      data-testid="download-dialog"
     >
       <Dialog.Header sx={dialogHeaderStyles} id="header-id">
         Select possible routes
