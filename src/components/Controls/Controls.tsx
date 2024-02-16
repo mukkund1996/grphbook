@@ -23,7 +23,7 @@ import {
 import { useApi } from "../../hooks/useApi";
 import { StartupPrompt } from "./StartupPrompt/StartupPrompt";
 import { useStartupPrompt } from "./StartupPrompt/StartupPrompt.hooks";
-import { UploadDialog } from "../UploadDialog/UploadDIalog";
+import { UploadDialog } from "../UploadDialog/UploadDialog";
 
 const CustomControl: React.FC = () => {
   const {
