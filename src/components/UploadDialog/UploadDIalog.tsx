@@ -55,6 +55,7 @@ export const UploadDialog = (props: UploadOptionsProps) => {
       flowInstance.setNodes(importedNodes);
       flowInstance.setEdges(importedEdges);
       setContent("");
+      handleClose();
     } catch (error) {
       setErrorState(true);
     }
@@ -67,6 +68,7 @@ export const UploadDialog = (props: UploadOptionsProps) => {
       isOpen={open}
       onDismiss={handleClose}
       aria-labelledby="header-id"
+      data-test={"upload-dialog"}
     >
       <Dialog.Header sx={dialogHeaderStyles} id="header-id">
         Import notebook
@@ -78,6 +80,7 @@ export const UploadDialog = (props: UploadOptionsProps) => {
           sx={inErrorState ? { ...textStyles, ...errorBorder } : textStyles}
           value={content}
           resize="none"
+          data-test={inErrorState ? "upload-error-textarea" : "upload-textarea"}
         />
         <ActionList.Divider />
         <div>
@@ -86,6 +89,7 @@ export const UploadDialog = (props: UploadOptionsProps) => {
             onClick={handleSubmit}
             className={commonStyles["button"]}
             trailingIcon={UploadIcon}
+            data-test="upload-submit-button"
           >
             Upload
           </Button>
