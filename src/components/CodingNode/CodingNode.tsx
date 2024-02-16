@@ -28,7 +28,7 @@ const CodingNode = ({ data }: NodeProps<CodingNodeData>) => {
 
   return (
     <div
-      data-testid={"coding-node"}
+      data-test={"coding-node"}
       className={`${commonStyles["node"]} ${commonStyles["border"]}`}
     >
       <Handle type="target" id="a" position={Position.Top} />

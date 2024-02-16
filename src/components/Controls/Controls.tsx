@@ -11,7 +11,7 @@ import {
 import DownloadDialog from "../DownloadDialog/DownloadDialog";
 import { useDownloadRoutes } from "../DownloadDialog/DownloadDialog.hooks";
 import { useUploadControls } from "../UploadDialog/UploadDialog.hooks";
-import { UploadDialog } from "../UploadDialog/UploadDIalog";
+import { UploadDialog } from "../UploadDialog/UploadDialog";
 import { TextInput } from "@primer/react";
 
 import controlStyles from "./Controls.module.css";
@@ -71,6 +71,7 @@ const CustomControl: React.FC = () => {
             className={controlStyles["control-btn"]}
             style={controlButtons}
             onClick={handleRefresh}
+            data-test="sync-button"
           >
             <SyncIcon />
           </ControlButton>
@@ -78,6 +79,7 @@ const CustomControl: React.FC = () => {
             className={controlStyles["control-btn"]}
             style={controlButtons}
             onClick={handleUploadOpen}
+            data-test="upload-button"
           >
             <UploadIcon />
           </ControlButton>
@@ -88,6 +90,7 @@ const CustomControl: React.FC = () => {
             onClick={handleDownloadOpen}
             style={controlButtons}
             disabled={disableDownload}
+            data-test="download-button"
           >
             <div ref={anchorRef}></div>
             <DownloadIcon />

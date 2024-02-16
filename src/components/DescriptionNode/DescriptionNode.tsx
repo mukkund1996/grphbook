@@ -40,7 +40,7 @@ const DescriptionNode = ({ data }: NodeProps<DescriptionNodeData>) => {
 
   return (
     <div
-      data-testid="desc-node"
+      data-test="desc-node"
       className={`${commonStyles["node"]} ${commonStyles["border"]}`}
     >
       <Handle type="target" id="a" position={Position.Top} />
