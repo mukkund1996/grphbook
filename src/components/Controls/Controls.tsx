@@ -11,7 +11,6 @@ import {
 import DownloadDialog from "../DownloadDialog/DownloadDialog";
 import { useDownloadRoutes } from "../DownloadDialog/DownloadDialog.hooks";
 import { useUploadControls } from "../UploadDialog/UploadDialog.hooks";
-import { UploadDialog } from "../UploadDialog/UploadDialog";
 import { TextInput } from "@primer/react";
 
 import controlStyles from "./Controls.module.css";
@@ -24,6 +23,7 @@ import {
 import { useApi } from "../../hooks/useApi";
 import { StartupPrompt } from "./StartupPrompt/StartupPrompt";
 import { useStartupPrompt } from "./StartupPrompt/StartupPrompt.hooks";
+import { UploadDialog } from "../UploadDialog/UploadDIalog";
 
 const CustomControl: React.FC = () => {
   const {
